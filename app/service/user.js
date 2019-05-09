@@ -17,7 +17,7 @@ class UserService extends Service {
             columns: ['roles'],
             limit: 1
         })
-        role.map(item => item.roles)
+        let roles = role.map(item => item.roles)
         const main = await this.app.mysql.select('main_menus');
         for (let i = 0;i < main.length;i++) {
             const sub = await this.app.mysql.select('sub_menus',{
@@ -27,7 +27,7 @@ class UserService extends Service {
                 main[i].children = sub;
             }
         }
-        return {menus: main,roles: role};
+        return {menus: main,roles};
     }
 }
 

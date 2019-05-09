@@ -17,7 +17,8 @@
     "egg-validate": "^2.0.2",
     "egg-view-nunjucks": "^2.2.0",
     "koa-is-json": "^1.0.0",
-    "mysql2": "^1.6.5"
+    "mysql2": "^1.6.5",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",

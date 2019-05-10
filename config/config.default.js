@@ -36,8 +36,8 @@ module.exports = appInfo => {
     },
   }
 
-  config.notfound = {
-    pageUrl: '../src/public/404.html'
+  config.onerror = {
+    errPageUrl: '../src/public/404.html'
   }
 
   // config.mysql = {

@@ -33,5 +33,9 @@ module.exports = {
   passportGithub: {
     enable: true,
     package: 'egg-passport-github'
+  },
+  passportLocal: {
+    enable: true,
+    package: 'passport-local'
   }
 };

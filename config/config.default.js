@@ -65,9 +65,9 @@ module.exports = appInfo => {
   //开发环境下关闭csrf
   config.security = {
     csrf: {
-      enable: true
+      enable: false
     },
-    domainWhiteList: ['http://localhost:3002']
+    domainWhiteList: ['http://localhost:3002','http://127.0.0.1:8080']
   }
 
   config.passportGithub = {

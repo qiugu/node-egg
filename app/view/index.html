@@ -11,5 +11,15 @@
         </li>
       {% endfor %}
     </ul>
+    <script>
+      fetch('http://localhost:8080/qgdev/user/login',{
+        body: JSON.stringify({
+          username: 'admin',
+          password: '123456'
+        }),
+        method: 'post'
+      }).then(res => res.json())
+      .then(res => console.log(res))
+    </script>
   </body>
 </html>

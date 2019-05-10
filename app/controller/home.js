@@ -6,11 +6,10 @@ class HomeController extends Controller {
       token: this.ctx.app.encode("我是啥子","123456")
     };
     let param = this.ctx.request.body;
-    const res = await this.ctx.service.user.find(param.username,param.password);
+    const res = await this.ctx.service.user.findByUser(param.username,param.password);
     if (res && res.length > 0) {
       let data = {
         ACCESS_TOKEN: this.ctx.app.encode("我是啥子","123456"),
-        data: res,
         loginName: param.username
       }
       this.success(data,'登录成功');

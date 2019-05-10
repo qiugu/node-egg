@@ -5,7 +5,7 @@ class UserService extends Service {
     async find(username, password) {
         const user = await this.app.mysql.select('users', {
             where: {
-                [Op.and]: [{name: username},{password: password}],
+                name: username,
             }
         });
         console.log(user);
@@ -33,11 +33,12 @@ class UserService extends Service {
 
     async findByUser(username,password) {
         const ctx = this.ctx;
-        ctx.body = await ctx.model.User.findAll({
+        const res = await ctx.model.User.findAll({
             where: {
-                name: username
+                [Op.and]: [{name: username},{password: password}],
             }
         });
+        return res;
     }
 
     async create() {

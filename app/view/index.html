@@ -1,25 +1,31 @@
 <html>
-  <head>
-    <title>Hacker News</title>
-  </head>
-  <body>
-    <h1>测试</h1>
-    <ul class="news-view view">
-      {% for item in list %}
-        <li class="item">
-          <a href="{{ item.url }}">{{ item.name }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-    <script>
-      fetch('http://localhost:8080/qgdev/user/login',{
-        body: JSON.stringify({
-          username: 'admin',
-          password: '123456'
-        }),
-        method: 'post'
-      }).then(res => res.json())
+
+<head>
+  <title>Hacker News</title>
+</head>
+
+<body>
+  <h1>测试</h1>
+  <ul class="news-view view">
+    {% for item in list %}
+    <li class="item">
+      <a href="{{ item.url }}">{{ item.name }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  <script>
+    fetch('http://localhost:8080/qgdev/user/login', {
+      body: JSON.stringify({
+        username: 'admin',
+        password: '123456'
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'post'
+    }).then(res => res.json())
       .then(res => console.log(res))
-    </script>
-  </body>
+  </script>
+</body>
+
 </html>

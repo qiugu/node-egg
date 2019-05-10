@@ -3,7 +3,7 @@ const Controller = require('./base');
 class UsersController extends Controller {
     async index () {
         const { ctx } = this;
-        const list = await ctx.model.User.findAll({limit: 10});
+        const list = await ctx.model.User.findAll();
         const data = {list};
         await ctx.render('index.html',data);
     }

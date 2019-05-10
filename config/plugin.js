@@ -23,7 +23,7 @@ module.exports = {
     package: 'egg-cors'
   },
   sequelize: {
-    enable: false,
+    enable: true,
     package: 'egg-sequelize'
   },
   passport: {

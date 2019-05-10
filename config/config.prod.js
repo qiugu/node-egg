@@ -28,7 +28,7 @@ module.exports = appInfo => {
 
   config.view = {
     defaultViewEngine: 'nunjucks',
-  }p
+  }
 
   config.notfound = {
     pageUrl: '../src/public/404.html'

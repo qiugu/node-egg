@@ -1,7 +1,7 @@
 /* eslint valid-jsdoc: "off" */
 
 'use strict';
-
+const path = require('path')
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
@@ -27,27 +27,35 @@ module.exports = appInfo => {
   }
 
   config.view = {
-    defaultViewEngine: 'nunjucks',
+    root: [
+      path.join(appInfo.baseDir, 'app/view'),
+      path.join(appInfo.baseDir, 'path/to/another'),
+    ].join(','),
+    mapping: {
+      '.html': 'nunjucks',
+    },
   }
 
   config.notfound = {
     pageUrl: '../src/public/404.html'
   }
 
-  config.mysql = {
-    client: {
-      host: '127.0.0.1',
-      port: 3306,
-      user: 'root',
-      password: '123456',
-      database: 'egg-sequelize-doc-default'
-    }
-  }
+  // config.mysql = {
+  //   client: {
+  //     host: 'localhost',
+  //     port: 3306,
+  //     user: 'root',
+  //     password: '123456',
+  //     database: 'egg-sequelize-doc-default'
+  //   }
+  // }
 
   config.sequelize = {
     dialect: 'mysql',
-    host: '127.0.0.1',
+    host: 'localhost',
     port: 3306,
+    username: 'root',
+    password: '123456',
     database: 'egg-sequelize-doc-default'
   }
 

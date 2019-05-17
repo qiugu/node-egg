@@ -15,14 +15,17 @@ class UserService extends Service {
   async findRoles(loginName) {
     const role = await this.ctx.model.User.findAll({
       where: { name: loginName },
-      columns: [ 'roles' ],
+      attributes: [ 'roles' ],
       limit: 1,
     });
     const roles = role.map(item => item.roles);
-    const main = await this.ctx.model.Menu.main.findAll();
+    const main = await this.ctx.model.Main.findAll({
+      attributes: [ 'id', 'title', 'icon', 'key' ],
+    });
     for (let i = 0; i < main.length; i++) {
-      const sub = await this.ctx.model.Menu.sub.findAll('sub_menus', {
+      const sub = await this.ctx.model.Sub.findAll({
         where: { parent_id: main[i].id },
+        attributes: [ 'title', 'icon', 'key' ],
       });
       if (sub && sub.length > 0) {
         main[i].children = sub;
@@ -53,8 +56,7 @@ class UserService extends Service {
       avatarUrl,
       abstract,
     });
-    ctx.status = 201;
-    ctx.body = user;
+    return user;
   }
 
   async update() {

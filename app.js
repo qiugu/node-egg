@@ -14,7 +14,7 @@ module.exports = app => {
         app.config.keys,
         { expiresIn: '7d' }
       );
-      await ctx.service.user.setCookie(token);
+      await ctx.cookies.set('token', token);
       // 设置登录用户cookie信息，以避开系统接口访问拦截
       return existsUser;
     }

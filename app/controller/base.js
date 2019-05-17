@@ -21,7 +21,7 @@ class BaseController extends Controller {
   }
 
   exception(msg) {
-    this.ctx.status = 502;
+    this.ctx.status = 200;
     this.ctx.body = {
       status: 422,
       resultMsg: msg,

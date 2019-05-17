@@ -42,7 +42,7 @@ class HomeController extends Controller {
 
   async show() {
     const ctx = this.ctx;
-    ctx.body = await ctx.model.User.findById(ctx.toInt(ctx.params.id));
+    ctx.body = await ctx.model.User.findById(ctx.app.toInt(ctx.params.id));
   }
 
   async create() {
@@ -55,7 +55,7 @@ class HomeController extends Controller {
 
   async update() {
     const ctx = this.ctx;
-    const id = ctx.toInt(ctx.params.id);
+    const id = ctx.app.toInt(ctx.params.id);
     const user = await ctx.model.User.findById(id);
     if (!user) {
       ctx.status = 404;
@@ -69,7 +69,7 @@ class HomeController extends Controller {
 
   async destroy() {
     const ctx = this.ctx;
-    const id = ctx.toInt(ctx.params.id);
+    const id = ctx.app.toInt(ctx.params.id);
     const user = await ctx.model.User.findById(id);
     if (!user) {
       ctx.status = 404;

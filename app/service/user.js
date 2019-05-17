@@ -13,15 +13,15 @@ class UserService extends Service {
   }
 
   async findRoles(loginName) {
-    const role = await this.app.mysql.select('users', {
-      where: { name: 'admin' },
+    const role = await this.ctx.model.User.findAll({
+      where: { name: loginName },
       columns: [ 'roles' ],
       limit: 1,
     });
     const roles = role.map(item => item.roles);
-    const main = await this.app.mysql.select('main_menus');
+    const main = await this.ctx.model.Menu.main.findAll();
     for (let i = 0; i < main.length; i++) {
-      const sub = await this.app.mysql.select('sub_menus', {
+      const sub = await this.ctx.model.Menu.sub.findAll('sub_menus', {
         where: { parent_id: main[i].id },
       });
       if (sub && sub.length > 0) {
@@ -51,7 +51,7 @@ class UserService extends Service {
 
   async update() {
     const ctx = this.ctx;
-    const id = ctx.toInt(ctx.params.id);
+    const id = ctx.app.toInt(ctx.params.id);
     const user = await ctx.model.User.findById(id);
     if (!user) {
       ctx.status = 404;
@@ -65,7 +65,7 @@ class UserService extends Service {
 
   async destroy() {
     const ctx = this.ctx;
-    const id = ctx.toInt(ctx.params.id);
+    const id = ctx.app.toInt(ctx.params.id);
     const user = await ctx.model.User.findById(id);
     if (!user) {
       ctx.status = 404;

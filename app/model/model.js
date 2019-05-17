@@ -23,5 +23,10 @@ module.exports = app => {
     roles: STRING(100),
   });
 
-  return { Main, Sub };
+  const Menu = {
+    main: Main,
+    sub: Sub,
+  };
+
+  return Menu;
 };

@@ -11,7 +11,7 @@ module.exports = {
       key: STRING(130),
       parent_id: INTEGER,
       created_at: DATE,
-      updated_at: DATE
+      updated_at: DATE,
     });
   },
   // 在执行数据库降级时调用的函数，删除 main_menus 表

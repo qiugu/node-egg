@@ -2,7 +2,7 @@
 
 module.exports = app => {
   const { STRING, INTEGER, DATE } = app.Sequelize;
-  
+
   const Main = app.model.define('main_menu', {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
     name: STRING(30),
@@ -10,7 +10,7 @@ module.exports = app => {
     age: INTEGER,
     created_at: DATE,
     updated_at: DATE,
-    roles: STRING(100)
+    roles: STRING(100),
   });
 
   const Sub = app.model.define('sub_menu', {
@@ -20,8 +20,8 @@ module.exports = app => {
     age: INTEGER,
     created_at: DATE,
     updated_at: DATE,
-    roles: STRING(100)
+    roles: STRING(100),
   });
 
-  return {Main,Sub};
+  return { Main, Sub };
 };

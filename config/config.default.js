@@ -1,7 +1,8 @@
+/* eslint-disable no-trailing-spaces */
 /* eslint valid-jsdoc: "off" */
 
 'use strict';
-const path = require('path')
+const path = require('path');
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
@@ -16,7 +17,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1557211352002_1566';
   
   config.jsonp = {
-    csrf: true
+    csrf: true,
   };
 
   config.session = {
@@ -24,7 +25,7 @@ module.exports = appInfo => {
     maxAge: 24 * 3600 * 1000, // 1 天
     httpOnly: true,
     encrypt: true,
-  }
+  };
 
   config.view = {
     root: [
@@ -34,11 +35,11 @@ module.exports = appInfo => {
     mapping: {
       '.html': 'nunjucks',
     },
-  }
+  };
 
   config.onerror = {
-    errPageUrl: '../src/public/404.html'
-  }
+    errPageUrl: '../src/public/404.html',
+  };
 
   // config.mysql = {
   //   client: {
@@ -56,26 +57,26 @@ module.exports = appInfo => {
     port: 3306,
     username: 'root',
     password: '123456',
-    database: 'egg-sequelize-doc-default'
-  }
+    database: 'egg-sequelize-doc-default',
+  };
 
   // add your middleware config here
   config.middleware = [];
 
-  //开发环境下关闭csrf
+  // 开发环境下关闭csrf
   config.security = {
     csrf: {
-      enable: false
+      enable: false,
     },
-    domainWhiteList: ['http://localhost:3002','http://127.0.0.1:8080']
-  }
+    domainWhiteList: [ 'http://localhost:3002', 'http://127.0.0.1:8080' ],
+  };
 
   config.passportGithub = {
     key: '46b85aea388080d94dd8',
     secret: '793f96044a8003cbb9a879b897ba0f190804d0c9',
     // callbackURL: '/passport/github/callback',
     // proxy: false,
-  }
+  };
 
   // add your user config here
   const userConfig = {
@@ -84,6 +85,6 @@ module.exports = appInfo => {
 
   return {
     ...config,
-    ...userConfig
+    ...userConfig,
   };
 };

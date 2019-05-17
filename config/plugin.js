@@ -8,34 +8,34 @@ module.exports = {
   // }
   validate: {
     enable: true,
-    package: 'egg-validate'
+    package: 'egg-validate',
   },
   nunjucks: {
     enable: true,
-    package: 'egg-view-nunjucks'
+    package: 'egg-view-nunjucks',
   },
   mysql: {
     enable: true,
-    package: 'egg-mysql'
+    package: 'egg-mysql',
   },
   cors: {
     enable: true,
-    package: 'egg-cors'
+    package: 'egg-cors',
   },
   sequelize: {
     enable: true,
-    package: 'egg-sequelize'
+    package: 'egg-sequelize',
   },
   passport: {
     enable: true,
-    package: 'egg-passport'
+    package: 'egg-passport',
   },
   passportGithub: {
     enable: true,
-    package: 'egg-passport-github'
+    package: 'egg-passport-github',
   },
   passportLocal: {
     enable: true,
-    package: 'passport-local'
-  }
+    package: 'passport-local',
+  },
 };

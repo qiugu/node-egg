@@ -78,6 +78,8 @@ module.exports = appInfo => {
     // proxy: false,
   };
 
+  config.passportGithubSuccessRedirect = 'http://localhost:3002/login';
+
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',

@@ -41,10 +41,18 @@ class UserService extends Service {
     return res;
   }
 
-  async create() {
+  async commonRegister({ username, password, email, provider, id, thirdPassUpdateStatus, avatarUrl, abstract }) {
     const ctx = this.ctx;
-    const { name, age } = ctx.request.body;
-    const user = await ctx.model.User.create({ name, age });
+    const user = await ctx.model.User.create({
+      username,
+      password,
+      email,
+      provider,
+      id,
+      thirdPassUpdateStatus,
+      avatarUrl,
+      abstract,
+    });
     ctx.status = 201;
     ctx.body = user;
   }

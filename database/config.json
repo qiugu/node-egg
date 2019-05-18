@@ -2,22 +2,22 @@
   "development": {
     "username": "root",
     "password": "123456",
-    "database": "egg-sequelize-doc-default",
-    "host": "localhost",
+    "database": "egg_qg_dev",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": "123456",
-    "database": "egg-sequelize-doc-unittest",
-    "host": "localhost",
+    "database": "database_test",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": "123456",
-    "database": "practice",
-    "host": "localhost",
+    "password": "920610",
+    "database": "egg_qgms_prod",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   }
 }

@@ -5,8 +5,8 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  router.post('/qgdev/user/login', controller.home.index);
-  router.post('/qgdev/user/getInfo', controller.home.getRoles);
+  router.post('/qgtest/user/login', controller.home.index);
+  router.post('/qgtest/user/getInfo', controller.home.getRoles);
   router.get('/logout', controller.home.logout);
   router.get('/', controller.users.index);
   // app.passport.mount('github');

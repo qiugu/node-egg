@@ -12,6 +12,6 @@ module.exports = app => {
     updated_at: DATE,
     roles: STRING(100),
   });
-
+  //
   return User;
 };

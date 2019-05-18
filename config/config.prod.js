@@ -1,7 +1,8 @@
+/* eslint-disable no-trailing-spaces */
 /* eslint valid-jsdoc: "off" */
 
 'use strict';
-
+const path = require('path');
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
@@ -14,7 +15,7 @@ module.exports = appInfo => {
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1557211352002_1566';
-
+  
   config.jsonp = {
     csrf: true,
   };
@@ -27,15 +28,65 @@ module.exports = appInfo => {
   };
 
   config.view = {
-    defaultViewEngine: 'nunjucks',
+    root: [
+      path.join(appInfo.baseDir, 'app/view'),
+      path.join(appInfo.baseDir, 'path/to/another'),
+    ].join(','),
+    mapping: {
+      '.html': 'nunjucks',
+    },
   };
 
-  config.notfound = {
-    pageUrl: '../src/public/404.html',
+  config.onerror = {
+    errPageUrl: '../src/public/404.html',
+  };
+
+  // config.mysql = {
+  //   client: {
+  //     host: 'localhost',
+  //     port: 3306,
+  //     user: 'root',
+  //     password: '123456',
+  //     database: 'egg-sequelize-doc-default'
+  //   }
+  // }
+
+  config.sequelize = {
+    dialect: 'mysql',
+    host: 'localhost',
+    port: 3306,
+    username: 'root',
+    password: '920610',
+    database: 'egg_qgms_prod',
   };
 
   // add your middleware config here
   config.middleware = [];
+
+  // 开发环境下关闭csrf
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+    domainWhiteList: [ 'http://47.110.48.159', 'http://47.110.48.159:7001' ],
+  };
+
+  config.cluster = {
+    listen: {
+      port: 7001,
+      hostname: '0.0.0.0',
+      // path: '/var/run/egg.sock',
+    }
+  };
+
+  config.passportGithub = {
+    key: '46b85aea388080d94dd8',
+    secret: '793f96044a8003cbb9a879b897ba0f190804d0c9',
+    // callbackURL: '/passport/github/callback',
+    // proxy: false,
+  };
+
+  config.passportGithubSuccessRedirect = 'http://localhost:3002/login';
 
   // add your user config here
   const userConfig = {

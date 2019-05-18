@@ -47,7 +47,7 @@ module.exports = appInfo => {
   //     port: 3306,
   //     user: 'root',
   //     password: '123456',
-  //     database: 'egg-sequelize-doc-default'
+  //     database: 'egg_qg_dev'
   //   }
   // }
 
@@ -57,7 +57,7 @@ module.exports = appInfo => {
     port: 3306,
     username: 'root',
     password: '123456',
-    database: 'egg-sequelize-doc-default',
+    database: 'egg_qg_dev',
   };
 
   // add your middleware config here

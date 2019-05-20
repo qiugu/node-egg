@@ -1,18 +1,26 @@
 <html>
 
 <head>
-  <title>秋谷</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>秋</title>
+  <style>
+    body {
+      background: linear-gradient(#72cca8 40%,#aee7c8 60%, #f3f9f8 100%);
+    }
+  </style>
 </head>
 
 <body>
-  <h1>测试</h1>
-  <ul class="news-view view">
+  <h1>为自己走过的路点赞</h1>
+  <!-- <ul class="news-view view">
     {% for item in list %}
     <li class="item">
       <a href="{{ item.url }}">{{ item.name }}</a>
     </li>
     {% endfor %}
-  </ul>
+  </ul> -->
   <script>
     fetch('http://47.110.48.159:7001/qgms/user/login', {
       body: JSON.stringify({

@@ -42,8 +42,8 @@ module.exports = appInfo => {
     host: 'localhost',
     port: 3306,
     username: 'root',
-    password: '123456',
-    database: 'egg_qg_dev',
+    password: '920610',
+    database: 'egg_qg_test',
   };
 
   // add your middleware config here
@@ -54,7 +54,19 @@ module.exports = appInfo => {
     csrf: {
       enable: true,
     },
-    domainWhiteList: [ 'http://localhost:3002', 'http://127.0.0.1:8080' ],
+    domainWhiteList: [ 'http://47.110.48.159', 'http://47.110.48.159:7001' ],
+  };
+
+  config.jwt = {
+    secret: 'byj18297900274',
+  };
+
+  config.cluster = {
+    listen: {
+      port: 7001,
+      hostname: '0.0.0.0',
+      // path: '/var/run/egg.sock',
+    },
   };
 
   config.passportGithub = {
@@ -62,10 +74,6 @@ module.exports = appInfo => {
     secret: '793f96044a8003cbb9a879b897ba0f190804d0c9',
     // callbackURL: '/passport/github/callback',
     // proxy: false,
-  };
-
-  config.jwt = {
-    secret: '123456',
   };
 
   config.passportGithubSuccessRedirect = 'http://localhost:3002/login';

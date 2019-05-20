@@ -15,10 +15,6 @@ module.exports = appInfo => {
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1557211352002_1566';
-  
-  config.jsonp = {
-    csrf: true,
-  };
 
   config.session = {
     key: 'EGG_SESS',
@@ -41,16 +37,6 @@ module.exports = appInfo => {
     errPageUrl: '../src/public/404.html',
   };
 
-  // config.mysql = {
-  //   client: {
-  //     host: 'localhost',
-  //     port: 3306,
-  //     user: 'root',
-  //     password: '123456',
-  //     database: 'egg-sequelize-doc-default'
-  //   }
-  // }
-
   config.sequelize = {
     dialect: 'mysql',
     host: 'localhost',
@@ -66,9 +52,13 @@ module.exports = appInfo => {
   // 开发环境下关闭csrf
   config.security = {
     csrf: {
-      enable: false,
+      enable: true,
     },
     domainWhiteList: [ 'http://47.110.48.159', 'http://47.110.48.159:7001' ],
+  };
+
+  config.jwt = {
+    secret: 'byj18297900274',
   };
 
   config.cluster = {
@@ -76,7 +66,7 @@ module.exports = appInfo => {
       port: 7001,
       hostname: '0.0.0.0',
       // path: '/var/run/egg.sock',
-    }
+    },
   };
 
   config.passportGithub = {

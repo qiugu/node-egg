@@ -14,10 +14,9 @@
     {% endfor %}
   </ul>
   <script>
-    fetch('http://47.110.48.159:7001/qgms/user/login', {
+    fetch('http://localhost:8080/qgtest/user/getInfo?username=admin', {
       body: JSON.stringify({
-        username: 'admin',
-        password: '123456'
+        loginName: 'admin',
       }),
       headers: {
         'Content-Type': 'application/json'

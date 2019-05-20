@@ -1,20 +1,13 @@
 /* eslint-disable strict */
 const Service = require('egg').Service;
 const Op = require('sequelize').Op;
+const md5 = require('md5');
 
 class UserService extends Service {
-  async find(username, password) {
-    const user = await this.app.mysql.select('users', {
-      where: {
-        name: username,
-      },
-    });
-    return user;
-  }
-
+  // 查询角色以及菜单信息
   async findRoles(loginName) {
     const role = await this.ctx.model.User.findAll({
-      where: { name: loginName },
+      where: { username: loginName },
       attributes: [ 'roles' ],
       limit: 1,
     });
@@ -34,11 +27,12 @@ class UserService extends Service {
     return { menus: main, roles };
   }
 
+  //  查询账户密码
   async findByUser(username, password) {
     const ctx = this.ctx;
     const res = await ctx.model.User.findAll({
       where: {
-        [Op.and]: [{ name: username }, { password }],
+        [Op.and]: [{ username }, { password: md5(password) }],
       },
     });
     return res;

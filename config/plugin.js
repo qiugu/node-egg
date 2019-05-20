@@ -38,4 +38,8 @@ module.exports = {
     enable: false,
     package: 'passport-local',
   },
+  jwt: {
+    enable: true,
+    package: 'egg-jwt',
+  },
 };

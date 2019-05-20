@@ -2,31 +2,38 @@
 const Controller = require('./base');
 
 class HomeController extends Controller {
+  //  首页登录
   async index() {
-    this.ctx.session = {
-      token: this.ctx.app.encode('我是啥子', '123456'),
+    const { ctx } = this;
+    console.log(ctx.app.config.env);
+    const param = ctx.request.body;
+    const rule = {
+      username: 'string',
+      password: 'string',
     };
-    const param = this.ctx.request.body;
-    const res = await this.ctx.service.user.findByUser(param.username, param.password);
-    if (res && res.length > 0) {
-      const data = {
-        ACCESS_TOKEN: this.ctx.app.encode('我是啥子', '123456'),
-        loginName: param.username,
-      };
-      this.success(data, '登录成功');
-    } else {
+    ctx.validate(rule);
+    const user = await ctx.service.user.findByUser(param.username, param.password);
+    if (!user && user.length <= 0) {
       this.exception('账号或密码错误');
     }
+    const { uuid, roles, username, name } = user[0];
+    const result = { uuid, roles, username, name };
+    const token = ctx.setToken(result);
+    this.success(Object.assign(result, { ACCESS_TOKEN: token }), '登录成功');
   }
 
+  //  获取用户角色信息
   async getRoles() {
     const param = this.ctx.request.body;
+    const rule = {
+      loginName: 'string',
+    };
+    this.ctx.validate(rule);
     const res = await this.ctx.service.user.findRoles(param.loginName);
-    if (res) {
-      this.success(res, 'ok');
-    } else {
+    if (!res) {
       this.exception('未查询到数据');
     }
+    this.success(res, 'ok');
   }
 
   async logout() {

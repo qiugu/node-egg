@@ -2,6 +2,7 @@
 const Controller = require('./base');
 
 class UsersController extends Controller {
+  //  博客商城首页
   async index() {
     const { ctx } = this;
     const list = await ctx.model.User.findAll();

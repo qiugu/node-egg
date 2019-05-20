@@ -9,9 +9,9 @@ module.exports = app => {
       where: { id: user.id },
     });
     if (existsUser) {
-      const token = jwt.sign(
+      const token = app.jwt.sign(
         { userId: existsUser.userId },
-        app.config.keys,
+        app.config.jwt.secret,
         { expiresIn: '7d' }
       );
       await ctx.cookies.set('token', token);
@@ -31,7 +31,7 @@ module.exports = app => {
       avatarUrl: user.photo,
       abstract: user.profile._json.bio,
     });
-    const token = jwt.sign({ userId: 11234 }, app.config.keys, {
+    const token = app.jwt.sign({ userId: 11234 }, app.config.jwt.secret, {
       expiresIn: '7d',
     });
     await ctx.cookies.set('token', token);

@@ -5,10 +5,10 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  router.post('/qgtest/user/login', controller.home.index);
-  router.post('/qgtest/user/getInfo', controller.home.getRoles);
-  router.get('/logout', controller.home.logout);
-  router.get('/', controller.users.index);
+  router.post('/qgtest/user/login', controller.manage.index);
+  router.post('/qgtest/user/getInfo', controller.manage.getRoles);
+  router.get('/logout', controller.manage.logout);
+  router.get('/', controller.view.index);
   // app.passport.mount('github');
   // 上面的 mount 是语法糖，等价于
   const github = app.passport.authenticate('github', {

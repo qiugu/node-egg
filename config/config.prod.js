@@ -52,7 +52,7 @@ module.exports = appInfo => {
   // 开发环境下关闭csrf
   config.security = {
     csrf: {
-      enable: true,
+      useSession: true,
     },
     domainWhiteList: [ 'http://47.110.48.159', 'http://47.110.48.159:7001' ],
   };

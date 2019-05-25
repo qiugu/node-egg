@@ -11,7 +11,7 @@ module.exports = appInfo => {
    * built-in config
    * @type {Egg.EggAppConfig}
    **/
-  const config = exports = {};
+  const config = (exports = {});
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1557211352002_1566';
@@ -52,7 +52,12 @@ module.exports = appInfo => {
   // 开发环境下关闭csrf
   config.security = {
     csrf: {
-      enable: true,
+      ignore: ctx => {
+        if (ctx.request.url.match(/\/qgtest\/user\/*/)) {
+          return true;
+        }
+        return false;
+      },
     },
     domainWhiteList: [ 'http://localhost:3002', 'http://127.0.0.1:8080' ],
   };

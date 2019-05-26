@@ -52,7 +52,12 @@ module.exports = appInfo => {
   // 开发环境下关闭csrf
   config.security = {
     csrf: {
-      useSession: true,
+      ignore: ctx => {
+        if (ctx.request.url.match(/\/qgtest\/user\/*/)) {
+          return true;
+        }
+        return false;
+      },
     },
     domainWhiteList: [ 'http://47.110.48.159', 'http://47.110.48.159:7001' ],
   };

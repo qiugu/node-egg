@@ -9,6 +9,11 @@ class UsersController extends Controller {
     const data = { list };
     await ctx.render('index.html', data);
   }
+
+  async assets() {
+    const { ctx } = this;
+    await ctx.render('/assets/bootstrap-4.0.0-beta.3-dist/css/bootstrap.min.css');
+  }
 }
 
 module.exports = UsersController;

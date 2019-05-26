@@ -9,6 +9,7 @@ module.exports = app => {
   router.post('/qgtest/user/getInfo', controller.manage.getRoles);
   router.get('/logout', controller.manage.logout);
   router.get('/', controller.view.index);
+  router.get('/assets/bootstrap-4.0.0-beta.3-dist/css', controller.view.assets);
   // app.passport.mount('github');
   // 上面的 mount 是语法糖，等价于
   const github = app.passport.authenticate('github', {

@@ -13,8 +13,9 @@ class HomeController extends Controller {
     };
     ctx.validate(rule);
     const user = await ctx.service.user.findByUser(param.username, param.password);
-    if (!user && user.length <= 0) {
+    if (user.length <= 0) {
       this.exception('账号或密码错误');
+      return;
     }
     const { uuid, roles, username, name } = user[0];
     const result = { uuid, roles, username, name };

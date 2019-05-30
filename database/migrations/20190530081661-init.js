@@ -3,7 +3,6 @@
 const fs = require('fs');
 const path = require('path');
 const folderPath = path.join('./', 'app/schema');
-const uuidv1 = require('uuid/v1');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {

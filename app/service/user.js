@@ -4,27 +4,21 @@ const Op = require('sequelize').Op;
 const md5 = require('md5');
 
 class UserService extends Service {
-  // 查询角色以及菜单信息
+  // 查询角色信息
   async findRoles(loginName) {
-    const role = await this.ctx.model.User.findAll({
+    const roleInfo = await this.ctx.model.User.findAll({
       where: { username: loginName },
-      attributes: [ 'roles' ],
       limit: 1,
     });
-    const roles = role.map(item => item.roles);
-    const main = await this.ctx.model.Main.findAll({
-      attributes: [ 'id', 'title', 'icon', 'key' ],
+    const roles = roleInfo.find(item => item.roles);
+    const res = await this.ctx.model.RolesInfo.findAll({
+      where: { roles: roles.roles },
     });
-    for (let i = 0; i < main.length; i++) {
-      const sub = await this.ctx.model.Sub.findAll({
-        where: { parent_id: main[i].id },
-        attributes: [ 'title', 'icon', 'key' ],
-      });
-      if (sub && sub.length > 0) {
-        main[i].children = sub;
-      }
-    }
-    return { menus: main, roles };
+    const permissionList = res[0].permissionList.split(',');
+    const newRes = Object.assign(res[0], {
+      permissionList,
+    });
+    return { info: newRes };
   }
 
   //  查询账户密码

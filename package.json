@@ -40,10 +40,9 @@
   "scripts": {
     "start": "egg-scripts start --daemon --title=egg-server-egg-server",
     "stop": "egg-scripts stop --title=egg-server-egg-server",
-    "dev": "egg-bin dev --port 8080",
-    "debug": "egg-bin debug --port 8080",
+    "dev": "egg-bin dev",
+    "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
-    "check": "npm run debug --EGG_SERVER_ENV=unittest",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint .",

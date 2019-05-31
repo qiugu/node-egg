@@ -59,7 +59,7 @@ module.exports = appInfo => {
   };
 
   // add your middleware config here
-  config.middleware = [ 'errorHandler' ];
+  config.middleware = [ 'errorHandler', 'auth' ];
 
   // 开发环境下关闭csrf
   config.security = {

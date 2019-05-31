@@ -53,48 +53,6 @@ class UserService extends Service {
     const res = await ctx.model.User.addUser({ email, password, mobile });
     return res;
   }
-
-  async commonRegister({ username, password, email, provider, id, thirdPassUpdateStatus, avatarUrl, abstract }) {
-    const ctx = this.ctx;
-    const user = await ctx.model.User.create({
-      username,
-      password,
-      email,
-      provider,
-      id,
-      thirdPassUpdateStatus,
-      avatarUrl,
-      abstract,
-    });
-    return user;
-  }
-
-  async update() {
-    const ctx = this.ctx;
-    const id = ctx.app.toInt(ctx.params.id);
-    const user = await ctx.model.User.findById(id);
-    if (!user) {
-      ctx.status = 404;
-      return;
-    }
-
-    const { name, age } = ctx.request.body;
-    await user.update({ name, age });
-    ctx.body = user;
-  }
-
-  async destroy() {
-    const ctx = this.ctx;
-    const id = ctx.app.toInt(ctx.params.id);
-    const user = await ctx.model.User.findById(id);
-    if (!user) {
-      ctx.status = 404;
-      return;
-    }
-
-    await user.destroy();
-    ctx.status = 200;
-  }
 }
 
 module.exports = UserService;

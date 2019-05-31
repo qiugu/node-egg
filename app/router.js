@@ -12,7 +12,6 @@ module.exports = app => {
 
   //  页面请求接口
   router.get('/', controller.view.index);
-  router.get('/logout', controller.manage.logout);
 
   //  第三方登录接口
   // app.passport.mount('github');

@@ -46,7 +46,7 @@ class UserService extends Service {
     if (newEmail || newUserName) {
       ctx.body = {
         status: 422,
-        message: '用户名已经存在',
+        resultMsg: '用户名已经存在',
       };
       return;
     }

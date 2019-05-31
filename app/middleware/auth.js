@@ -10,6 +10,7 @@ module.exports = (options, app) => {
       }
     } else {
       //  表示是模板路径
+      await next();
     }
   };
 };

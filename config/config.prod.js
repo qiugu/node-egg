@@ -85,6 +85,12 @@ module.exports = appInfo => {
 
   config.passportGithubSuccessRedirect = 'http://localhost:3002/login';
 
+  //  监控
+  config.alinode = {
+    appid: '80020',
+    secret: 'ddee0dd646ed1227fdadcd097948bb294f11c9e0'
+  }
+
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',

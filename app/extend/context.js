@@ -21,10 +21,10 @@ module.exports = {
     }
 
     const token = app.jwt.sign(data, app.config.jwt.secret, {
-      expiresIn: '60000',
+      expiresIn: '12h',
     });
     const cookieConfig = {
-      maxAge: 1000 * 60,
+      maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
       overwrite: true,
       signed: false,

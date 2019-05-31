@@ -5,11 +5,16 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  console.log(app.config.basePath);
+  //  管理系统请求
   router.post(`${app.config.basePath}/user/login`, controller.manage.index);
   router.post(`${app.config.basePath}/user/getinfo`, controller.manage.getRoles);
-  router.get('/logout', controller.manage.logout);
+  router.post(`${app.config.basePath}/user/register`, controller.manage.register);
+
+  //  页面请求接口
   router.get('/', controller.view.index);
+  router.get('/logout', controller.manage.logout);
+
+  //  第三方登录接口
   // app.passport.mount('github');
   // 上面的 mount 是语法糖，等价于
   const github = app.passport.authenticate('github', {

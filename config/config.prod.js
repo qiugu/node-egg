@@ -49,13 +49,13 @@ module.exports = appInfo => {
   };
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = [ 'errorHandler' ];
 
   // 开发环境下关闭csrf
   config.security = {
     csrf: {
       ignore: ctx => {
-        if (ctx.request.url.match(/\/qgtest\/user\/*/)) {
+        if (ctx.request.url.match(/\/qgms\/user\/*/)) {
           return true;
         }
         return false;

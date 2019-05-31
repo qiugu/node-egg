@@ -4,6 +4,18 @@ const Op = require('sequelize').Op;
 const md5 = require('md5');
 
 class UserService extends Service {
+
+  //  查询账户密码
+  async findByUser(username, password) {
+    const ctx = this.ctx;
+    const res = await ctx.model.User.findAll({
+      where: {
+        [Op.and]: [{ username }, { password: md5(password) }],
+      },
+    });
+    return res;
+  }
+
   // 查询角色信息
   async findRoles(loginName) {
     const roleInfo = await this.ctx.model.User.findAll({
@@ -21,14 +33,24 @@ class UserService extends Service {
     return { info: newRes };
   }
 
-  //  查询账户密码
-  async findByUser(username, password) {
-    const ctx = this.ctx;
-    const res = await ctx.model.User.findAll({
-      where: {
-        [Op.and]: [{ username }, { password: md5(password) }],
-      },
+  //  注册用户
+  async createUser(params) {
+    const { ctx } = this;
+    const { email, password, mobile } = params;
+    const newEmail = await ctx.model.User.find({
+      where: { email },
     });
+    const newUserName = await ctx.model.User.find({
+      where: { username: email },
+    });
+    if (newEmail || newUserName) {
+      ctx.body = {
+        status: 422,
+        message: '用户名已经存在',
+      };
+      return;
+    }
+    const res = await ctx.model.User.addUser({ email, password, mobile });
     return res;
   }
 

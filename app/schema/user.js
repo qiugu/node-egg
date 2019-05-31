@@ -10,6 +10,15 @@ module.exports = app => {
       primaryKey: true,
       defaultValue: UUIDV1,
     },
+    telephone: {
+      type: STRING(11),
+      allowNull: false,
+    },
+    email: {
+      type: STRING(76),
+      allowNull: true,
+      unique: true,
+    },
     lastModifiedTime: {
       type: DATE,
       allowNull: false,
@@ -44,12 +53,12 @@ module.exports = app => {
       allowNull: false,
     },
     roles: {
-      type: ENUM('admin'),
+      type: ENUM('admin', 'user'),
       allowNull: false,
     },
     username: {
-      type: STRING(12),
-      allowNull: false,
+      type: STRING(38),
+      allowNull: true,
       unique: true,
     },
     password: {

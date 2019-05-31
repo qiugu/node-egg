@@ -1,5 +1,7 @@
 'use strict';
 const db = require('../../database/db_config.js');
+const md5 = require('md5');
+const uuidv1 = require('uuid/v1');
 
 module.exports = app => {
   const adminSchema = require('../schema/user.js')(app);
@@ -30,6 +32,33 @@ module.exports = app => {
     app.checkUpdate(result, '旧密码不正确');
 
     return uuid;
+  };
+
+  /**
+   * 创建用户
+   * @param userInfo 用户信息
+   */
+  Admin.addUser = async userInfo => {
+    const transaction = await app.transition();
+
+    const user = await Admin.create({
+      uuid: uuidv1(),
+      email: userInfo.email,
+      password: md5(userInfo.password),
+      telephone: userInfo.mobile,
+      lastModifiedTime: new Date(),
+      lastModifierName: 'user',
+      lastModifierId: 'user',
+      createdTime: new Date(),
+      creatorName: 'user',
+      creatorId: 'user',
+      name: '普通用户',
+      enableStatus: 'enabled',
+      roles: 'user',
+      username: userInfo.email.toString(),
+    }, transaction);
+
+    return user;
   };
 
   return Admin;

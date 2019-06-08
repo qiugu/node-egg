@@ -1,8 +1,8 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint valid-jsdoc: "off" */
 
-'use strict';
-const path = require('path');
+'use strict'
+const path = require('path')
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
@@ -11,19 +11,19 @@ module.exports = appInfo => {
    * built-in config
    * @type {Egg.EggAppConfig}
    **/
-  const config = (exports = {});
+  const config = (exports = {})
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1557211352002_1566';
+  config.keys = appInfo.name + '_1557211352002_1566'
 
-  config.basePath = '/qgdev';
+  config.basePath = '/qgdev'
 
   config.sessionRedis = {
     key: 'SESSID',
     maxAge: 24 * 3600 * 1000, // 1 天
     httpOnly: true,
     encrypt: true,
-  };
+  }
 
   config.view = {
     root: [
@@ -32,7 +32,7 @@ module.exports = appInfo => {
     mapping: {
       '.html': 'nunjucks',
     },
-  };
+  }
   // static files and cache files
   // config.static = {
   //   // 静态化访问前缀,如：`http://127.0.0.1:8080/assets/images/logo.png`
@@ -46,7 +46,7 @@ module.exports = appInfo => {
 
   config.onerror = {
     errPageUrl: '../src/public/404.html',
-  };
+  }
 
   config.sequelize = {
     dialect: 'mysql',
@@ -55,7 +55,7 @@ module.exports = appInfo => {
     username: 'root',
     password: '123456',
     database: 'egg_qg_dev',
-  };
+  }
 
   exports.redis = {
     client: {
@@ -64,50 +64,50 @@ module.exports = appInfo => {
       password: '',
       db: '0',
     },
-    agent:true
-  };
+    agent: true,
+  }
 
   // add your middleware config here
-  config.middleware = [ 'errorHandler', 'auth' ];
+  config.middleware = [ 'errorHandler', 'auth' ]
 
   // 开发环境下关闭csrf
   config.security = {
     csrf: {
       ignore: ctx => {
         if (ctx.request.url.match(/\/qgdev\/user\/*/)) {
-          return true;
+          return true
         }
-        return false;
+        return false
       },
     },
     domainWhiteList: [ 'http://localhost:3002', 'http://127.0.0.1:8080' ],
-  };
+  }
 
   config.cors = {
     origin: 'http://localhost:3002',
-    credentials: true
-  };
+    credentials: true,
+  }
 
   config.passportGithub = {
     key: '46b85aea388080d94dd8',
     secret: '793f96044a8003cbb9a879b897ba0f190804d0c9',
     // callbackURL: '/passport/github/callback',
     // proxy: false,
-  };
+  }
 
   config.jwt = {
     secret: '123456',
-  };
+  }
 
-  config.passportGithubSuccessRedirect = 'http://localhost:3002/login';
+  config.passportGithubSuccessRedirect = 'http://localhost:3002/login'
 
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
-  };
+  }
 
   return {
     ...config,
     ...userConfig,
-  };
-};
+  }
+}

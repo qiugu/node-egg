@@ -1,11 +1,11 @@
-'use strict';
-const db = require('../../database/db_config.js');
-const md5 = require('md5');
-const uuidv1 = require('uuid/v1');
+'use strict'
+const db = require('../../database/db_config.js')
+const md5 = require('md5')
+const uuidv1 = require('uuid/v1')
 
 module.exports = app => {
-  const adminSchema = require('../schema/user.js')(app);
-  const Admin = db.defineModel(app, 'user', adminSchema);
+  const adminSchema = require('../schema/user.js')(app)
+  const Admin = db.defineModel(app, 'user', adminSchema)
 
   /**
    * 查找管理员
@@ -16,8 +16,8 @@ module.exports = app => {
     return await Admin.findOne({
       attributes,
       where: { uuid },
-    });
-  };
+    })
+  }
 
   /**
    * 修改密码
@@ -25,21 +25,21 @@ module.exports = app => {
    * @return {string} - uuid
    */
   Admin.savePasswordModify = async params => {
-    const { uuid, oldPassword, password, lastModifierId, lastModifierName } = params;
-    const updateField = { password, lastModifierId, lastModifierName };
-    const result = await Admin.update(updateField, { where: { uuid, password: oldPassword } });
+    const { uuid, oldPassword, password, lastModifierId, lastModifierName } = params
+    const updateField = { password, lastModifierId, lastModifierName }
+    const result = await Admin.update(updateField, { where: { uuid, password: oldPassword } })
 
-    app.checkUpdate(result, '旧密码不正确');
+    app.checkUpdate(result, '旧密码不正确')
 
-    return uuid;
-  };
+    return uuid
+  }
 
   /**
    * 创建用户
-   * @param userInfo 用户信息
+   * @param userInfo{object} 用户信息
    */
   Admin.addUser = async userInfo => {
-    const transaction = await app.transition();
+    const transaction = await app.transition()
 
     const user = await Admin.create({
       uuid: uuidv1(),
@@ -55,10 +55,10 @@ module.exports = app => {
       enableStatus: 'enabled',
       roles: 'user',
       username: userInfo.username,
-    }, transaction);
+    }, transaction)
 
-    return user;
-  };
+    return user
+  }
 
-  return Admin;
-};
+  return Admin
+}

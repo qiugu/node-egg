@@ -1,21 +1,21 @@
-'use strict';
-const _ = require('lodash');
+'use strict'
+const _ = require('lodash')
 
 module.exports = {
   // 定义模型
   defineModel(app, name, attributes, attributes1) {
-    const attrs = {};
+    const attrs = {}
 
     for (const key in attributes) {
-      const value = attributes[key];
+      const value = attributes[key]
       if (_.isObject(value) && value.type) {
-        value.allowNull = value.allowNull && true;
-        attrs[key] = value;
+        value.allowNull = value.allowNull && true
+        attrs[key] = value
       } else {
         attrs[key] = {
           type: value,
           allowNull: true,
-        };
+        }
       }
     }
 
@@ -26,6 +26,6 @@ module.exports = {
       freezeTableName: true,
       getterMethods: {},
       setterMethods: {},
-    });
+    })
   },
-};
+}

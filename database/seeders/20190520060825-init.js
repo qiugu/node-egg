@@ -1,5 +1,5 @@
-'use strict';
-const uuidv1 = require('uuid/v1');
+'use strict'
+const uuidv1 = require('uuid/v1')
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -53,4 +53,4 @@ module.exports = {
       return queryInterface.bulkDelete('People', null, {});
     */
   },
-};
+}

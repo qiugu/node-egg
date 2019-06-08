@@ -2,7 +2,7 @@
 // app.js
 module.exports = app => {
   // app.passport.serializeUser(async(ctx, info) => {
-  //   return info; 
+  //   return info;
   //   // ctx.session.passport.user 也就是 ctx.user
   //   // 如果没有 'return user', ctx.user 就是 undefined
   // });
@@ -17,4 +17,4 @@ module.exports = app => {
   //     // destroy key
   //   },
   // };
-};
+}

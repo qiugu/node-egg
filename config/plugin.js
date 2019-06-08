@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /** @type Egg.EggPlugin */
 module.exports = {
@@ -49,6 +49,6 @@ module.exports = {
   alinode: {
     enable: true,
     package: 'egg-alinode',
-    env: 'production'
-  }
-};
+    env: 'production',
+  },
+}

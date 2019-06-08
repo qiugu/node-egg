@@ -6,7 +6,7 @@
  */
 
 (function($) {
-  'use strict';
+  'use strict'
 
   $.fn.LineProgressbar = function(options) {
 
@@ -21,27 +21,27 @@
       radius: '0px',
       height: '10px',
       width: '100%',
-    }, options);
+    }, options)
 
     return this.each(function(index, el) {
       // Markup
-      $(el).html('<div class="progressbar"><div class="proggress"></div><div class="percentCount"></div></div>');
+      $(el).html('<div class="progressbar"><div class="proggress"></div><div class="percentCount"></div></div>')
 
 
-      const progressFill = $(el).find('.proggress');
-      const progressBar = $(el).find('.progressbar');
+      const progressFill = $(el).find('.proggress')
+      const progressBar = $(el).find('.progressbar')
 
 
       progressFill.css({
         backgroundColor: options.fillBackgroundColor,
         height: options.height,
         borderRadius: options.radius,
-      });
+      })
       progressBar.css({
         width: options.width,
         backgroundColor: options.backgroundColor,
         borderRadius: options.radius,
-      });
+      })
 
       // Progressing
       progressFill.animate(
@@ -51,13 +51,13 @@
         {
           step(x) {
             if (options.ShowProgressCount) {
-              $(el).find('.percentCount').text(Math.round(x) + '%');
+              $(el).find('.percentCount').text(Math.round(x) + '%')
             }
           },
           duration: options.duration,
         }
-      );
+      )
       // //////////////////////////////////////////////////////////////////
-    });
-  };
-})(jQuery);
+    })
+  }
+})(jQuery)

@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
 module.exports = app => {
-  const { STRING, UUIDV1, DATE, BIGINT } = app.Sequelize;
+  const { STRING, UUIDV1, DATE, BIGINT } = app.Sequelize
 
   return {
     permissionId: {
@@ -38,5 +38,5 @@ module.exports = app => {
       type: BIGINT,
       defaultValue: 0,
     },
-  };
-};
+  }
+}

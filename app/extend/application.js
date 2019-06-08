@@ -1,22 +1,22 @@
 /* eslint-disable strict */
-const crypto = require('crypto');
-const TRANSITION = Symbol('Application#transition');
+const crypto = require('crypto')
+const TRANSITION = Symbol('Application#transition')
 
 module.exports = {
   toInt(val) {
     if (!val) {
-      return 0;
+      return 0
     }
-    return Number.parseFloat(val);
+    return Number.parseFloat(val)
   },
   // 事务
   async transition() {
     if (!this[TRANSITION]) {
-      this[TRANSITION] = await this.model.transaction();
+      this[TRANSITION] = await this.model.transaction()
     }
-    return this[TRANSITION];
+    return this[TRANSITION]
   },
   deleteTransition() {
-    this[TRANSITION] = null;
+    this[TRANSITION] = null
   },
-};
+}

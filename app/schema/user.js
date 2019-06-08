@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
 module.exports = app => {
-  const { STRING, BIGINT, DATE, UUIDV1, ENUM } = app.Sequelize;
+  const { STRING, BIGINT, DATE, UUIDV1, ENUM } = app.Sequelize
 
   return {
     uuid: {
@@ -13,7 +13,7 @@ module.exports = app => {
     telephone: {
       type: STRING(11),
       allowNull: false,
-      unique: true
+      unique: true,
     },
     lastModifiedTime: {
       type: DATE,
@@ -65,5 +65,5 @@ module.exports = app => {
       type: BIGINT,
       defaultValue: 0,
     },
-  };
-};
+  }
+}

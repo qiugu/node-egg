@@ -1,1 +1,4 @@
 coverage
+*.min.js
+*.min.css
+app/public/

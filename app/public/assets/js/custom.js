@@ -32,12 +32,12 @@
 
     if ($(window).scrollTop() > 100) {
 
-      $('#mu-header').addClass('mu-fixed-nav');
+      $('#mu-header').addClass('mu-fixed-nav')
 
 	    } else {
-	        $('#mu-header').removeClass('mu-fixed-nav');
+	        $('#mu-header').removeClass('mu-fixed-nav')
 	    }
-  });
+  })
 
 
   /* ----------------------------------------------------------- */
@@ -51,7 +51,7 @@
 		    startDelay: 1000,
 		    loop: true,
 		    loopCount: Infinity,
-  });
+  })
 
 
   /* ----------------------------------------------------------- */
@@ -63,29 +63,29 @@
 		 	$('.mu-html5-bar').LineProgressbar({
       percentage: 95,
       triggerOnce: true,
-    });
+    })
 
     $('.mu-css-bar').LineProgressbar({
       percentage: 90,
       triggerOnce: true,
-    });
+    })
 
     $('.mu-photoshop-bar').LineProgressbar({
       percentage: 85,
       triggerOnce: true,
-    });
+    })
 
     $('.mu-wordpress-bar').LineProgressbar({
       percentage: 80,
       triggerOnce: true,
-    });
+    })
 
     $('.mu-jquery-bar').LineProgressbar({
       percentage: 55,
       triggerOnce: true,
-    });
+    })
 
-  });
+  })
 
 
   /* ----------------------------------------------------------- */
@@ -102,45 +102,45 @@
     menuItems = topMenu.find('a[href^=\\#]'),
     // Anchors corresponding to menu items
     scrollItems = menuItems.map(function() {
-		  const item = $($(this).attr('href'));
-		  if (item.length) { return item; }
-    });
+		  const item = $($(this).attr('href'))
+		  if (item.length) { return item }
+    })
 
   // Bind click handler to menu items
   // so we can get a fancy scroll animation
   menuItems.click(function(e) {
 		  const href = $(this).attr('href'),
-		      offsetTop = href === '#' ? 0 : $(href).offset().top - topMenuHeight + 22;
+		      offsetTop = href === '#' ? 0 : $(href).offset().top - topMenuHeight + 22
 		  jQuery('html, body').stop().animate({
 		      scrollTop: offsetTop,
-		  }, 1500);
-		  e.preventDefault();
-  });
+		  }, 1500)
+		  e.preventDefault()
+  })
 
   // Bind to scroll
   jQuery(window).scroll(function() {
 		   // Get container scroll position
-		   const fromTop = $(this).scrollTop() + topMenuHeight;
+		   const fromTop = $(this).scrollTop() + topMenuHeight
 
 		   // Get id of current scroll item
 		   let cur = scrollItems.map(function() {
-		     if ($(this).offset().top < fromTop) { return this; }
-		   });
+		     if ($(this).offset().top < fromTop) { return this }
+		   })
 		   // Get the id of the current element
-		   cur = cur[cur.length - 1];
-		   const id = cur && cur.length ? cur[0].id : '';
+		   cur = cur[cur.length - 1]
+		   const id = cur && cur.length ? cur[0].id : ''
 
 		   if (lastId !== id) {
-		       lastId = id;
+		       lastId = id
 		       // Set/remove active class
 		       menuItems
 		         .parent().removeClass('active')
 		         .end()
         .filter('[href=\\#' + id + ']')
         .parent()
-        .addClass('active');
+        .addClass('active')
 		   }
-  });
+  })
 
 
   /* ----------------------------------------------------------- */
@@ -148,21 +148,21 @@
 	/* ----------------------------------------------------------- */
 
   jQuery('.mu-menu').on('click', 'li a', function() {
-		  $('.in').collapse('hide');
-  });
+		  $('.in').collapse('hide')
+  })
 
 
   /* ----------------------------------------------------------- */
   /*  6. PORTFOLIO GALLERY
 	/* ----------------------------------------------------------- */
-  $('.filtr-container').filterizr();
+  $('.filtr-container').filterizr()
 
   // Simple filter controls
 
 	    $('.mu-simplefilter li').click(function() {
-	        $('.mu-simplefilter li').removeClass('active');
-	        $(this).addClass('active');
-	    });
+	        $('.mu-simplefilter li').removeClass('active')
+	        $(this).addClass('active')
+	    })
 
   /* ----------------------------------------------------------- */
   /*  7. PORTFOLIO POPUP VIEW ( IMAGE LIGHTBOX )
@@ -174,7 +174,7 @@
 	  gallery: {
 	    enabled: true,
 	  },
-  });
+  })
 
   /* ----------------------------------------------------------- */
   /*  8. CLIENT TESTIMONIALS (SLICK SLIDER)
@@ -187,7 +187,7 @@
 		  speed: 500,
 		  autoplay: true,
 		  cssEase: 'linear',
-  });
+  })
 
 
   /* ----------------------------------------------------------- */
@@ -195,16 +195,16 @@
 	/* ----------------------------------------------------------- */
 
   $('.view-my-work-btn').on('click', function(e) {
-		    e.preventDefault();
+		    e.preventDefault()
 		    const target = this.hash,
-		    $target = $(target);
+		    $target = $(target)
 		    $('html, body').stop().animate({
 		        scrollTop: $target.offset().top,
 		    }, 1000, 'swing', function() {
-		        window.location.hash = target;
-    });
-  });
+		        window.location.hash = target
+    })
+  })
 
 
-})(jQuery);
+})(jQuery)
 

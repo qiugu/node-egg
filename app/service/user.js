@@ -2,6 +2,7 @@
 const Service = require('egg').Service;
 const Op = require('sequelize').Op;
 const md5 = require('md5');
+const svgCaptcha = require('svg-captcha');
 
 class UserService extends Service {
 
@@ -36,22 +37,35 @@ class UserService extends Service {
   //  注册用户
   async createUser(params) {
     const { ctx } = this;
-    const { email, password, mobile } = params;
-    const newEmail = await ctx.model.User.find({
-      where: { email },
+    const { username, password, mobile } = params;
+    const newMobile = await ctx.model.User.find({
+      where: { telephone: mobile },
     });
     const newUserName = await ctx.model.User.find({
-      where: { username: email },
+      where: { username },
     });
-    if (newEmail || newUserName) {
+    if (newMobile || newUserName) {
       ctx.body = {
         status: 422,
         resultMsg: '用户名已经存在',
       };
       return;
     }
-    const res = await ctx.model.User.addUser({ email, password, mobile });
+    const res = await ctx.model.User.addUser({ username, password, mobile });
     return res;
+  }
+
+  //  验证码服务
+  async captcha () {
+    const captcha = svgCaptcha.create({
+      size: 4,
+      fontSize: 50,
+      width: 100,
+      height: 40,
+      bacground: '#cc9966'
+    });
+    await this.ctx.app.redis.set('captcha',captcha.text.toLowerCase())
+    return captcha;
   }
 }
 

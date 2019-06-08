@@ -18,12 +18,13 @@ module.exports = appInfo => {
 
   config.basePath = '/qgdev';
 
-  config.session = {
-    key: 'EGG_SESS',
+  config.sessionRedis = {
+    key: 'SESSID',
     maxAge: 24 * 3600 * 1000, // 1 天
     httpOnly: true,
     encrypt: true,
   };
+
   config.view = {
     root: [
       path.join(appInfo.baseDir, 'app/view'),
@@ -32,8 +33,6 @@ module.exports = appInfo => {
       '.html': 'nunjucks',
     },
   };
-
-  config.site_static_host = process.env.EGG_SITE_STATIC_HOST || ''; // 静态文件存储域名
   // static files and cache files
   // config.static = {
   //   // 静态化访问前缀,如：`http://127.0.0.1:8080/assets/images/logo.png`
@@ -58,6 +57,16 @@ module.exports = appInfo => {
     database: 'egg_qg_dev',
   };
 
+  exports.redis = {
+    client: {
+      host: '127.0.0.1',
+      port: '6379',
+      password: '',
+      db: '0',
+    },
+    agent:true
+  };
+
   // add your middleware config here
   config.middleware = [ 'errorHandler', 'auth' ];
 
@@ -72,6 +81,11 @@ module.exports = appInfo => {
       },
     },
     domainWhiteList: [ 'http://localhost:3002', 'http://127.0.0.1:8080' ],
+  };
+
+  config.cors = {
+    origin: 'http://localhost:3002',
+    credentials: true
   };
 
   config.passportGithub = {

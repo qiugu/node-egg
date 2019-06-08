@@ -14,10 +14,6 @@ module.exports = {
     enable: true,
     package: 'egg-view-nunjucks',
   },
-  mysql: {
-    enable: true,
-    package: 'egg-mysql',
-  },
   cors: {
     enable: true,
     package: 'egg-cors',
@@ -26,24 +22,33 @@ module.exports = {
     enable: true,
     package: 'egg-sequelize',
   },
-  passport: {
-    enable: true,
-    package: 'egg-passport',
-  },
-  passportGithub: {
-    enable: true,
-    package: 'egg-passport-github',
-  },
-  passportLocal: {
-    enable: false,
-    package: 'passport-local',
-  },
+  // passport: {
+  //   enable: true,
+  //   package: 'egg-passport',
+  // },
+  // passportGithub: {
+  //   enable: true,
+  //   package: 'egg-passport-github',
+  // },
+  // passportLocal: {
+  //   enable: false,
+  //   package: 'passport-local',
+  // },
   jwt: {
     enable: true,
     package: 'egg-jwt',
   },
+  sessionRedis: {
+    enable: true,
+    package: 'egg-session-redis',
+  },
+  redis: {
+    enable: true,
+    package: 'egg-redis',
+  },
   alinode: {
     enable: true,
     package: 'egg-alinode',
+    env: 'production'
   }
 };

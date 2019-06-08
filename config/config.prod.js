@@ -18,11 +18,21 @@ module.exports = appInfo => {
 
   config.basePath = '/qgms';
 
-  config.session = {
-    key: 'EGG_SESS',
+  config.sessionRedis = {
+    key: 'SESSID',
     maxAge: 24 * 3600 * 1000, // 1 天
     httpOnly: true,
     encrypt: true,
+  };
+
+  exports.redis = {
+    client: {
+      host: '47.110.48.159',
+      port: '6379',
+      password: '',
+      db: '0',
+    },
+    agent:true
   };
 
   config.view = {
@@ -70,7 +80,7 @@ module.exports = appInfo => {
 
   config.cluster = {
     listen: {
-      port: 7001,
+      port: 80,
       hostname: '0.0.0.0',
       // path: '/var/run/egg.sock',
     },

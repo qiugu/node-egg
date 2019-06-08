@@ -5,7 +5,6 @@ class HomeController extends Controller {
   //  首页登录
   async index() {
     const { ctx } = this;
-    console.log(ctx.session);
     const param = ctx.request.body;
     const rule = {
       username: {
@@ -61,22 +60,27 @@ class HomeController extends Controller {
     const { ctx } = this;
     const param = this.ctx.request.body;
     const rule = {
-      email: {
-        type: 'email',
+      username: {
+        type: 'string',
+        max: 50
       },
       password: {
         type: 'string',
-        min: 6,
+        min: 6
       },
       password2: {
         type: 'string',
-        min: 6,
+        min: 6
       },
       mobile: {
         type: 'string',
         format: /^1[3456789]\d{9}$/,
-        min: 11,
+        min: 11
       },
+      captcha: {
+        type: 'string',
+        max: 4
+      }
     };
     try {
       ctx.validate(rule);
@@ -89,8 +93,23 @@ class HomeController extends Controller {
       this.exception('账号和密码不一致，请重新输入');
       return;
     }
+    const captcha = await ctx.app.redis.get('captcha');
+    this.logger.info(`注册验证码：${captcha.toLowerCase()}`);
+    if (param.captcha !== captcha.toLowerCase()) {
+      this.exception('验证码输入错误，请重新输入');
+      return;
+    }
     const user = await ctx.service.user.createUser(param);
     user && this.success(user, '注册成功');
+  }
+
+  //  获取图片验证码
+  async verify () {
+    const { ctx } = this;
+    let captcha = await ctx.service.user.captcha(); // 服务里面的方法
+    ctx.response.type = 'image/svg+xml';  // 知道你个返回的类型
+    ctx.session.code = captcha.text;
+    ctx.body = captcha.data; // 返回一张图片
   }
 }
 

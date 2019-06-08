@@ -13,11 +13,7 @@ module.exports = app => {
     telephone: {
       type: STRING(11),
       allowNull: false,
-    },
-    email: {
-      type: STRING(76),
-      allowNull: true,
-      unique: true,
+      unique: true
     },
     lastModifiedTime: {
       type: DATE,

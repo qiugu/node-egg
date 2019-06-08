@@ -43,7 +43,6 @@ module.exports = app => {
 
     const user = await Admin.create({
       uuid: uuidv1(),
-      email: userInfo.email,
       password: md5(userInfo.password),
       telephone: userInfo.mobile,
       lastModifiedTime: new Date(),
@@ -55,7 +54,7 @@ module.exports = app => {
       name: '普通用户',
       enableStatus: 'enabled',
       roles: 'user',
-      username: userInfo.email.toString(),
+      username: userInfo.username,
     }, transaction);
 
     return user;

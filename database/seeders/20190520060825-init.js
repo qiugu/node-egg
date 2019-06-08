@@ -7,7 +7,6 @@ module.exports = {
     // await queryInterface.bulkInsert('user', [{
     //   uuid: uuidv1(),
     //   telephone: '182XXXXXXXX',
-    //   email: '753964762@qq.com',
     //   lastModifiedTime: new Date(),
     //   lastModifierName: 'system',
     //   lastModifierId: 'system',

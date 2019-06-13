@@ -25,9 +25,17 @@ module.exports = app => {
    * @return {string} - uuid
    */
   Admin.savePasswordModify = async params => {
-    const { uuid, oldPassword, password, lastModifierId, lastModifierName } = params
+    const {
+      uuid,
+      oldPassword,
+      password,
+      lastModifierId,
+      lastModifierName,
+    } = params
     const updateField = { password, lastModifierId, lastModifierName }
-    const result = await Admin.update(updateField, { where: { uuid, password: oldPassword } })
+    const result = await Admin.update(updateField, {
+      where: { uuid, password: oldPassword },
+    })
 
     app.checkUpdate(result, '旧密码不正确')
 
@@ -36,26 +44,29 @@ module.exports = app => {
 
   /**
    * 创建用户
-   * @param userInfo{object} 用户信息
+   * @param {object} userInfo 用户信息
    */
   Admin.addUser = async userInfo => {
     const transaction = await app.transition()
 
-    const user = await Admin.create({
-      uuid: uuidv1(),
-      password: md5(userInfo.password),
-      telephone: userInfo.mobile,
-      lastModifiedTime: new Date(),
-      lastModifierName: 'user',
-      lastModifierId: 'user',
-      createdTime: new Date(),
-      creatorName: 'user',
-      creatorId: 'user',
-      name: '普通用户',
-      enableStatus: 'enabled',
-      roles: 'user',
-      username: userInfo.username,
-    }, transaction)
+    const user = await Admin.create(
+      {
+        uuid: uuidv1(),
+        password: md5(userInfo.password),
+        telephone: userInfo.mobile,
+        lastModifiedTime: new Date(),
+        lastModifierName: 'user',
+        lastModifierId: 'user',
+        createdTime: new Date(),
+        creatorName: 'user',
+        creatorId: 'user',
+        name: '普通用户',
+        enableStatus: 'enabled',
+        roles: 'user',
+        username: userInfo.username,
+      },
+      transaction
+    )
 
     return user
   }

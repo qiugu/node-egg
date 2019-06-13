@@ -8,7 +8,7 @@ class UserService extends Service {
 
   //  查询账户密码
   async findByUser(username, password) {
-    const ctx = this.ctx
+    const { ctx } = this
     const res = await ctx.model.User.findAll({
       where: {
         [Op.and]: [{ username }, { password: md5(password) }],
@@ -47,7 +47,7 @@ class UserService extends Service {
     if (newMobile || newUserName) {
       ctx.body = {
         status: 422,
-        resultMsg: '用户名已经存在',
+        resultMsg: '用户名或手机号码已经存在',
       }
       return
     }

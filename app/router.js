@@ -5,15 +5,19 @@
  */
 module.exports = app => {
   const { router, controller } = app
+  const { backend, webview } = controller
   //  管理系统请求
-  router.post(`${app.config.basePath}/user/login`, controller.manage.index)
-  router.post(`${app.config.basePath}/user/getinfo`, controller.manage.getRoles)
-  router.post(`${app.config.basePath}/user/register`, controller.manage.register)
+  router.post(`${app.config.basePath}/user/login`, backend.manage.index)
+  router.post(`${app.config.basePath}/user/getinfo`, backend.manage.getRoles)
+  router.post(`${app.config.basePath}/user/register`, backend.manage.register)
   //  注册验证码
-  router.get(`${app.config.basePath}/user/verify`, controller.manage.verify)
+  router.get(`${app.config.basePath}/user/verify`, backend.manage.verify)
+  //  获取用户消息通知
+  router.post(`${app.config.basePath}/personal/message`, backend.manage.getMessage)
 
   //  页面请求接口
-  router.get('/', controller.view.index)
+  router.get('/', webview.view.index)
+  router.post('/web/leaveMessage', webview.view.leaveMessage)
 
   //  第三方登录接口
   // app.passport.mount('github');

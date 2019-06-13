@@ -20,7 +20,7 @@ module.exports = appInfo => {
 
   config.sessionRedis = {
     key: 'SESSID',
-    maxAge: 24 * 3600 * 1000, // 1 天
+    maxAge: 12 * 3600 * 1000, // 1 天
     httpOnly: true,
     encrypt: true,
   }
@@ -53,8 +53,8 @@ module.exports = appInfo => {
     dialect: 'mysql',
     host: 'localhost',
     port: 3306,
-    username: 'root',
-    password: '920610',
+    username: 'qiugu',
+    password: 'byj123456',
     database: 'egg_qgms_prod',
   }
 

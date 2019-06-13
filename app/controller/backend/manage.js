@@ -1,5 +1,5 @@
 /* eslint-disable strict */
-const Controller = require('./base')
+const Controller = require('../base')
 
 class HomeController extends Controller {
   //  首页登录
@@ -110,6 +110,16 @@ class HomeController extends Controller {
     ctx.response.type = 'image/svg+xml' // 知道你个返回的类型
     ctx.session.code = captcha.text
     ctx.body = captcha.data // 返回一张图片
+  }
+
+  //  获取用户消息通知
+  async getMessage() {
+    const { ctx } = this
+    const list = await ctx.app.cache
+    if (!list) {
+      this.exception('未查询到数据')
+    }
+    this.success(list, 'ok')
   }
 }
 

@@ -42,6 +42,17 @@ module.exports = {
     //   lastModifiedTime: new Date(),
     //   version: 0,
     // }]);
+
+    // 添加消息信息测试
+    await queryInterface.bulkInsert('message', [{
+      id: uuidv1(),
+      datetime: new Date(),
+      mes_content: '初始化消息通知内容',
+      mess_type: '2',
+      createdTime: new Date(),
+      lastModifiedTime: new Date(),
+      version: 0,
+    }])
   },
 
   down: (queryInterface, Sequelize) => {

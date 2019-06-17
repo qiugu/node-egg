@@ -64,7 +64,7 @@ module.exports = appInfo => {
   config.security = {
     csrf: {
       ignore: ctx => {
-        if (ctx.request.url.match(/\/qgdev\/user\/*/)) {
+        if (ctx.request.url.match(/\/qgdev\/*/)) {
           return true
         }
         return false

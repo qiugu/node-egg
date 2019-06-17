@@ -7,7 +7,7 @@ module.exports = (options, app) => {
       (ctx.path !== ctx.app.config.basePath + '/user/verify')
       && ctx.path.indexOf('/user') === -1) {
       //  表示api接口
-      const valid = ctx.verifyToken()
+      const valid = await ctx.verifyToken(ctx.request.body.token)
       if (valid) {
         await next()
       }

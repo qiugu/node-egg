@@ -49,6 +49,6 @@ module.exports = {
   alinode: {
     enable: true,
     package: 'egg-alinode',
-    env: 'production',
+    env: 'prod',
   },
 }

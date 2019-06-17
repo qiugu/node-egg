@@ -1,6 +1,7 @@
 {
   "extends": "eslint-config-egg",
   "rules": {
+    "linebreak-style": 0,
     "no-unused-vars": 0,
     "generator-star-spacing": "off",
       "no-mixed-operators": 0,

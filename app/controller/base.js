@@ -27,6 +27,18 @@ class BaseController extends Controller {
       resultMsg: msg,
     }
   }
+
+  //  验证参数规则
+  validateParams(rule) {
+    const { ctx } = this
+    try {
+      ctx.validate(rule)
+    } catch (error) {
+      ctx.logger.warn(error.errors)
+      this.exception(error.message)
+      return error
+    }
+  }
 }
 
 module.exports = BaseController

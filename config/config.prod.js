@@ -27,9 +27,9 @@ module.exports = appInfo => {
 
   exports.redis = {
     client: {
-      host: '47.110.48.159',
-      port: '6379',
-      password: '',
+      host: '127.0.0.1',
+      port: '7010',
+      password: 'byj9206101112',
       db: '0',
     },
     agent: true,
@@ -65,7 +65,7 @@ module.exports = appInfo => {
   config.security = {
     csrf: {
       ignore: ctx => {
-        if (ctx.request.url.match(/\/qgms\/user\/*/)) {
+        if (ctx.request.url.match(/\/qgms\/*/)) {
           return true
         }
         return false

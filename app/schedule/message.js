@@ -7,7 +7,7 @@ const Subscription = require('egg').Subscription
 class UpdateMessage extends Subscription {
   static get schedule() {
     return {
-      interval: '12h',
+      interval: '3h',
       type: 'all',
       immediate: true,
     }

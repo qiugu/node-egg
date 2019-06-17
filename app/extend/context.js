@@ -7,29 +7,43 @@ module.exports = {
 
   // 获取token
   getAccessToken() {
-    return this.app.redis.get('token')
+    const uuid = this.cookies.get('uuid', { 
+      encrypt:true,
+      signed: true
+    })
+    if (!uuid) {
+      this.verifyFail(ERROR_CODE, '登陆时效，请重新登陆')
+    }
+    return this.app.redis.get(uuid)
   },
 
   // 设置token
-  setToken(data = {}) {
+  async setToken(data = {}) {
     const { app } = this
 
+    let { uuid } = data
+    this.logger.info(app.config.keys)
     const token = app.jwt.sign(data, app.config.jwt.secret, {
       expiresIn: '12h',
     })
 
-    app.redis.set('token',token)
+    await app.redis.set(uuid, token)
+
+    this.cookies.set('uuid', uuid, {
+      maxAge: 1000 * 60 * 60 * 12,
+      encrypt: true,
+      signed: true
+    })
 
     return token
   },
   removeToken() {
-    this.cookies.set('token', null)
+    this.cookies.set('uuid', null)
   },
 
   // 校验token
-  async verifyToken() {
+  async verifyToken(token) {
     const { app } = this
-    const token = await this.getAccessToken(this)
     const verifyResult = await new Promise(resolve => {
       app.jwt.verify(token, app.config.jwt.secret, (err, decoded) => {
         if (err) {

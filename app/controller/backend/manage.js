@@ -16,11 +16,9 @@ class HomeController extends Controller {
         trim: true,
       },
     }
-    try {
-      ctx.validate(rule)
-    } catch (err) {
-      ctx.logger.warn(err.errors)
-      this.exception(err.message)
+    const err = this.validateParams(rule)
+    if (err && err.code) {
+      this.exception(null, err.message)
       return
     }
     const user = await ctx.service.user.findByUser(param.username, param.password)
@@ -30,7 +28,7 @@ class HomeController extends Controller {
     }
     const { uuid, roles, username, name } = user[0]
     const result = { uuid, roles, username, name }
-    const token = ctx.setToken(result)
+    const token = await ctx.setToken(result)
     this.success(Object.assign(result, { ACCESS_TOKEN: token }), '登录成功')
   }
 
@@ -41,16 +39,15 @@ class HomeController extends Controller {
     const rule = {
       loginName: 'string',
     }
-    try {
-      ctx.validate(rule)
-    } catch (err) {
-      ctx.logger.warn(err.errors)
-      this.exception(err.message)
+    const err = this.validateParams(rule)
+    if (err && err.code) {
+      this.exception(null, err.message)
       return
     }
     const res = await ctx.service.user.findRoles(param.loginName)
     if (!res) {
       this.exception('未查询到数据')
+      return
     }
     this.success(res, 'ok')
   }
@@ -82,11 +79,9 @@ class HomeController extends Controller {
         max: 4,
       },
     }
-    try {
-      ctx.validate(rule)
-    } catch (err) {
-      ctx.logger.warn(err.errors)
-      this.exception(err.message)
+    const err = this.validateParams(rule)
+    if (err && err.code) {
+      this.exception(null, err.message)
       return
     }
     if (param.password !== param.password2) {
@@ -115,9 +110,20 @@ class HomeController extends Controller {
   //  获取用户消息通知
   async getMessage() {
     const { ctx } = this
+    const rule = {
+      token: {
+        type: 'string'
+      }
+    }
+    const err = this.validateParams(rule)
+    if (err && err.code) {
+      this.exception(null, err.message)
+      return
+    }
     const list = await ctx.app.cache
     if (!list) {
       this.exception('未查询到数据')
+      return
     }
     this.success(list, 'ok')
   }

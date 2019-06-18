@@ -112,8 +112,8 @@ class HomeController extends Controller {
     const { ctx } = this
     const rule = {
       token: {
-        type: 'string'
-      }
+        type: 'string',
+      },
     }
     const err = this.validateParams(rule)
     if (err && err.code) {

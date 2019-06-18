@@ -1,33 +1,90 @@
 # egg-server
 
+## 前端向知识体系
+参考：[从输入URL到页面加载的过程](http://www.dailichun.com/2018/03/12/whenyouenteraurl.html)
 
+### 浏览器
+* 浏览器是多进程
+* Browser进程
+* 第三方插件进程
+* GPU进程
+* 浏览器渲染进程（内核）
 
-## QuickStart
+### 浏览器渲染进程
+* GUI渲染线程
+* JS引擎线程
+* 事件触发线程
+* 定时触发器线程
+* 异步HTTP请求线程
 
-<!-- add docs here for user -->
+### 从浏览器输入URL到界面展示内容
+1.  输入url，浏览器先解析url，如果浏览器有缓存的话，直接使用缓存，没有话进行DNS解析得到IP，浏览器会开启网络请求线程
+2.  发起TCP连接，经过三次握手，首先客户端发送SYN报文，服务端返回一个SYN+ACK的报文，客户端收到后，再发送一个ACK报文
+3.  服务端收到请求，经过一系列处理（负载均衡，安全拦截以及后台内部处理等）
+4.  前后端利用http报文进行交互，如果命中缓存，则使用缓存资源
+5.  客户端接收到响应以后，进行页面解析（构建DOMTree，CSSTree，RenderTree，Layout/Paint，load、DOMContentLoaded事件）
+6.  CSS的可视化格式模型
+7.  JS引擎解析过程（词法分析，语法分析，构建AST等）
+8.  其他（跨域、Web安全等）
 
-see [egg docs][egg] for more detail.
+### HTTP协议
+* TCP/IP五层模型
+  1.  应用层
+  2.  传输层
+  3.  网络层
+  4.  数据链路层
+  5.  物理层
 
-### Development
+* OSI七层参考模型
+  1.  应用层
+  2.  表示层
+  3.  会话层
+  4.  传输层
+  5.  网络层
+  6.  数据链路层
+  7.  物理层
 
-```bash
-$ npm i
-$ npm run dev
-$ open http://localhost:7001/
-```
+* TCP三次握手和四次挥手
 
-### Deploy
+* HTTP和HTTPS以及报文结构
 
-```bash
-$ npm start
-$ npm stop
-```
+* HTTP缓存（强缓存和协商缓存）
 
-### npm scripts
+### 页面解析
+1.  构建DOM树
+2.  构建CSS树
+3.  合并生成Render树
+4.  进行布局Layout和绘制Paint，修改DOM的位置或者是颜色字体等会触发回流和重绘
+5.  浏览器将隔层信息发给GPU，GPU会将各层合成（composite），显示在屏幕上
 
-- Use `npm run lint` to check code style.
-- Use `npm test` to run unit test.
-- Use `npm run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
+### CSS相关概念
+* BFC
+* IFC
+* 包含块
+* 控制框
 
+### JS引擎解析
+1.  词法分析，分解成词元（token）
+2.  语法分析，生成语法树
+3.  使用翻译器，转换成字节码
+4.  使用字节码解释器，转换成机器码执行
 
-[egg]: https://eggjs.org
+####  JS引擎执行过程
+* 分号补全
+* 变量提升
+* 执行上下文，VO（变量对象），AO（活动对象）
+* 作用域链、原型链
+* this用法
+* 回收机制（标记清除，引用计数）
+* 事件循环（宏任务、微任务）
+
+### 其他
+#### Web安全
+* XSS攻击
+* CSRF攻击
+* SQL注入
+
+#### Web优化
+* Webpack 构建配置
+* 前端算法
+* 前端设计模式

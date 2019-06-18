@@ -16,8 +16,6 @@ module.exports = appInfo => {
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1557211352002_1566'
 
-  config.basePath = '/qgdev'
-
   config.sessionRedis = {
     key: 'SESSID',
     maxAge: 12 * 3600 * 1000, // 1 天
@@ -81,8 +79,6 @@ module.exports = appInfo => {
   config.passportGithub = {
     key: '46b85aea388080d94dd8',
     secret: '793f96044a8003cbb9a879b897ba0f190804d0c9',
-    // callbackURL: '/passport/github/callback',
-    // proxy: false,
   }
 
   config.jwt = {
@@ -93,7 +89,7 @@ module.exports = appInfo => {
 
   // add your user config here
   const userConfig = {
-    // myAppName: 'egg',
+    basePath: '/qgdev',
   }
 
   return {

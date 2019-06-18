@@ -16,8 +16,6 @@ module.exports = appInfo => {
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1557211352002_1566'
 
-  config.basePath = '/qgms'
-
   config.sessionRedis = {
     key: 'SESSID',
     maxAge: 12 * 3600 * 1000, // 1 天
@@ -103,7 +101,7 @@ module.exports = appInfo => {
 
   // add your user config here
   const userConfig = {
-    // myAppName: 'egg',
+    basePath: '/qgms',
   }
 
   return {

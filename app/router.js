@@ -18,13 +18,4 @@ module.exports = app => {
   //  页面请求接口
   router.get('/', webview.view.index)
   router.post('/web/leaveMessage', webview.view.leaveMessage)
-
-  //  第三方登录接口
-  // app.passport.mount('github');
-  // 上面的 mount 是语法糖，等价于
-  // const github = app.passport.authenticate('github', {
-  //   successRedirect: app.config.passportGithubSuccessRedirect, // 配置鉴权成功后的跳转地址
-  // });
-  // router.get('/passport/github', github);
-  // router.get('/passport/github/callback', github);
 }

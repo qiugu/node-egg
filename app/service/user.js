@@ -67,6 +67,37 @@ class UserService extends Service {
     await this.ctx.app.redis.set('captcha', captcha.text.toLowerCase())
     return captcha
   }
+
+  //  第三方github用户登录服务
+  async getGithubInfo(params) {
+    const { ctx } = this
+    const res = await ctx.curl('https://github.com/login/oauth/access_token', {
+      dataType: 'json',
+      data: params,
+    })
+    this.logger.info(res.data.access_token)
+    const userinfo = await ctx.curl(`https://api.github.com/user?access_token=${res.data.access_token}`, {
+      dataType: 'json',
+    })
+    const newUserName = await ctx.model.User.find({
+      where: { username: userinfo.data.login },
+    })
+    if (!newUserName) {
+      const res = await ctx.model.User.addUser({
+        username: userinfo.data.login,
+        password: userinfo.data.node_id,
+        mobile: userinfo.data.id,
+      })
+      if (!res) {
+        ctx.body = {
+          status: 422,
+          resultMsg: '第三方用户创建失败，请联系管理员',
+        }
+        return
+      }
+    }
+    return userinfo
+  }
 }
 
 module.exports = UserService

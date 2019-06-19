@@ -127,6 +127,34 @@ class HomeController extends Controller {
     }
     this.success(list, 'ok')
   }
+
+  //  github第三方用户登录
+  async githubAuth() {
+    const { ctx } = this
+    const rule = {
+      code: {
+        type: 'string',
+      },
+      client_id: {
+        type: 'string',
+      },
+      client_secret: {
+        type: 'string',
+      },
+    }
+    const err = this.validateParams(rule)
+    if (err && err.code) {
+      this.exception(null, err.message)
+      return
+    }
+    const params = ctx.request.body
+    const userinfo = await ctx.service.user.getGithubInfo(params)
+    if (!userinfo) {
+      this.exception('未查询到数据')
+      return
+    }
+    this.success(userinfo, 'ok')
+  }
 }
 
 module.exports = HomeController

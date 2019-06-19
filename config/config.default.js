@@ -68,7 +68,7 @@ module.exports = appInfo => {
         return false
       },
     },
-    domainWhiteList: [ 'http://localhost:3002', 'http://127.0.0.1:8080' ],
+    domainWhiteList: [ 'http://localhost:3022', 'http://127.0.0.1:8080' ],
   }
 
   config.cors = {

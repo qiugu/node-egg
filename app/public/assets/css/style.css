@@ -591,6 +591,7 @@ button:focus {
 	margin-bottom: 15px;
 	padding: 25px 10px;
 	width: 100%;
+	cursor: pointer;
 }
 
 .mu-service-icon-box {

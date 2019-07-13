@@ -5,7 +5,8 @@ class UsersController extends Controller {
   //  博客商城首页
   async index() {
     const { ctx } = this
-    await ctx.render('index.html', ctx.app.config)
+    console.log(ctx.app.config)
+    await ctx.render('index.html', {basePath: ctx.app.config.basePath})
   }
 
   //  留言信息

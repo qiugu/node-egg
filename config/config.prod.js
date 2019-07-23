@@ -52,7 +52,7 @@ module.exports = appInfo => {
     host: 'localhost',
     port: 3306,
     username: 'qiugu',
-    password: 'byj123456',
+    password: 'xxxxx',
     database: 'egg_qgms_prod',
   }
 
@@ -90,8 +90,6 @@ module.exports = appInfo => {
     // callbackURL: '/passport/github/callback',
     // proxy: false,
   }
-
-  config.passportGithubSuccessRedirect = 'http://localhost:3002/login'
 
   //  监控
   config.alinode = {

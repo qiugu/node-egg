@@ -22,5 +22,6 @@ module.exports = app => {
 
   //  页面请求接口
   router.get('/', webview.view.index)
+  router.get('/home', webview.view.home)
   router.post('/web/leaveMessage', webview.view.leaveMessage)
 }

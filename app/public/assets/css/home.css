@@ -1,0 +1,46 @@
+body {
+  height: 100%;
+  overflow: hidden;
+}
+* {
+  box-sizing: border-box;
+}
+/* header */
+.logo-title {
+  font-size: 20px;
+  color: #000;
+  font-weight: bold;
+}
+.main-header {
+  width: calc(100% - 260px);
+  height: 100px;
+  line-height: 100px;
+  text-align: right;
+  padding: 0 50px;
+  position: fixed;
+  top: 0;
+}
+
+.main {
+  display: flex;
+  height: 100%;
+}
+
+/* sidebar */
+.sidebar {
+  width: 260px;
+  height: 100%;
+  overflow-y: auto;
+}
+.content {
+  width: calc(100% - 260px);
+  padding-top: 100px;
+  overflow-y: scroll;
+  position: relative;
+}
+.content-wrapper {
+  position: relative;
+}
+.content p {
+  height: 300px;
+}

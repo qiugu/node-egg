@@ -5,8 +5,12 @@ class UsersController extends Controller {
   //  博客商城首页
   async index() {
     const { ctx } = this
-    console.log(ctx.app.config)
-    await ctx.render('index.html', {basePath: ctx.app.config.basePath})
+    await ctx.render('index.html', { basePath: ctx.app.config.basePath })
+  }
+
+  async home() {
+    const { ctx } = this
+    await ctx.render('home.html', {})
   }
 
   //  留言信息

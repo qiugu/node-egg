@@ -8,9 +8,9 @@
   <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/public/assets/css/home.css">
 </head>
-<body>
+<body data-spy="scroll" data-target="#navbar-sidebar" data-offset="100">
   <main class="main">
-    <nav class="navbar navbar-light sidebar" id="navbar-sidebar">
+    <nav class="nav nav-tabs flex-column sidebar" id="navbar-sidebar">
       <section class="navbar-brand">
         <img src="/public/assets/images/logo.png" alt="logo">
         <span class="logo-title">前端知识体系</span>
@@ -36,7 +36,7 @@
           <a href="javascript:;">关于作者</a>
         </nav>
       </section>
-      <section class="content-wrapper" data-spy="scroll" data-target="#navbar-sidebar" data-offset="0">
+      <section class="content-wrapper">
           <h4 id="item-1">Item 1</h4>
           <p>...</p>
           <h5 id="item-1-1">Item 1-1</h5>
@@ -54,7 +54,7 @@
       </section>
     </section>
   </main>
-  <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js" integrity="sha256-LSUpTY0kkXGKvcBC9kbmgibmx3NVVgJvAEfTZbs51mU=" crossorigin="anonymous"></script>
 </body>

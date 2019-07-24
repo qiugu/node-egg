@@ -1,6 +1,7 @@
 body {
-  height: 100%;
-  overflow: hidden;
+  height: 100vh;
+  overflow-y: scroll;
+  position: relative;
 }
 * {
   box-sizing: border-box;
@@ -12,13 +13,14 @@ body {
   font-weight: bold;
 }
 .main-header {
-  width: calc(100% - 260px);
+  width: calc(100vw - 260px);
   height: 100px;
   line-height: 100px;
   text-align: right;
-  padding: 0 50px;
+  padding: 0 50px 0 0;
   position: fixed;
   top: 0;
+  z-index: 999;
 }
 
 .main {
@@ -29,17 +31,14 @@ body {
 /* sidebar */
 .sidebar {
   width: 260px;
-  height: 100%;
-  overflow-y: auto;
+  height: 100vh;
+  position: fixed;
+  padding: 15px 20px;
 }
 .content {
-  width: calc(100% - 260px);
-  padding-top: 100px;
-  overflow-y: scroll;
-  position: relative;
-}
-.content-wrapper {
-  position: relative;
+  width: calc(100vw - 260px);
+  height: 100vh;
+  margin: 100px 0 0 260px;
 }
 .content p {
   height: 300px;

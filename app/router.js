@@ -27,4 +27,5 @@ module.exports = app => {
   router.get('/', webview.view.index)
   router.get('/home', webview.view.home)
   router.post('/web/leaveMessage', webview.view.leaveMessage)
+  router.post('/web/getDoc', webview.view.getDocContent)
 }

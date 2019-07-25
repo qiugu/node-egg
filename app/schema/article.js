@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = app => {
-  const { STRING, DATE, UUIDV1, ENUM, BIGINT } = app.Sequelize
+  const { STRING, DATE, UUIDV1, TEXT, BIGINT } = app.Sequelize
 
   return {
     id: {
@@ -13,10 +13,15 @@ module.exports = app => {
     },
     username: {
       type: STRING(36),
-      allowNull: true,
+      allowNull: false,
+    },
+    title: {
+      type: STRING(50),
+      allowNull: false,
+      unique: true,
     },
     doc_content: {
-      type: STRING(20000),
+      type: TEXT,
       allowNull: false,
     },
     createdTime: {

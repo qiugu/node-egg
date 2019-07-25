@@ -1,5 +1,6 @@
 /* eslint-disable strict */
 const Controller = require('../base')
+const showdown = require('showdown')
 
 class UsersController extends Controller {
   //  博客商城首页
@@ -10,7 +11,24 @@ class UsersController extends Controller {
 
   async home() {
     const { ctx } = this
-    await ctx.render('home.html', {})
+    let title = ctx.request.query.title
+    if (!title) {
+      title = '前端知识体系'
+    }
+    const res = await ctx.service.webservice.getDocService({ title })
+    if (!res) {
+      await ctx.render('home.html', {})
+      return
+    }
+    const covert = new showdown.Converter()
+    covert.setFlavor('github')
+    covert.setOption('ghCompatibleHeaderId', true)
+    covert.setOption('backslashEscapesHTMLTags', true)
+    //  过滤script标签
+    const reg = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi
+    const htmlcontent = res.doc_content.replace(reg, '')
+    const html = covert.makeHtml(htmlcontent)
+    await ctx.render('home.html', { html })
   }
 
   //  留言信息
@@ -27,19 +45,42 @@ class UsersController extends Controller {
       },
       message: {
         type: 'string',
+        max: 2000,
       },
     }
-    try {
-      ctx.validate(rule)
-    } catch (err) {
-      ctx.logger.warn(err.errors)
-      this.exception(err.message)
+    const err = this.validateParams(rule)
+    if (err && err.code) {
+      this.exception(null, err.message)
       return
     }
 
     const res = await ctx.service.webservice.leaveMessage(param)
     if (!res) {
       this.exception('留言失败，请重试')
+      return
+    }
+    this.success(res, 'ok')
+  }
+
+  //  获取文章内容
+  async getDocContent() {
+    const { ctx } = this
+    const params = Object.keys(ctx.request.body).length !== 0 ? ctx.request.body : { title: '浏览器概览' }
+    const rule = {
+      title: {
+        type: 'string',
+        max: 50,
+      },
+    }
+    const err = this.validateParams(rule)
+    if (err && err.code) {
+      this.exception(null, err.message)
+      return
+    }
+
+    const res = await ctx.service.webservice.getDocService(params)
+    if (!res) {
+      this.exception('获取文章失败')
       return
     }
     this.success(res, 'ok')

@@ -6,11 +6,17 @@ class Document extends Controller {
     const { ctx } = this
     const param = ctx.request.body
     const rule = {
+      title: {
+        type: 'string',
+        max: 50,
+      },
       docContent: {
         type: 'string',
+        max: 20000,
       },
       username: {
         type: 'string',
+        max: 36,
       },
       token: {
         type: 'string',
@@ -19,6 +25,11 @@ class Document extends Controller {
     const err = this.validateParams(rule)
     if (err && err.code) {
       this.exception(null, err.message)
+      return
+    }
+    const isExist = await ctx.service.webservice.getDocService({ title: param.title })
+    if (isExist) {
+      this.exception('文章标题已经存在')
       return
     }
     const res = await ctx.service.articles.saveService(param)

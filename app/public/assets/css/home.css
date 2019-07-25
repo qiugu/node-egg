@@ -2,44 +2,74 @@ body {
   height: 100vh;
   overflow-y: scroll;
   position: relative;
+  background: #f4f5f5;
 }
 * {
   box-sizing: border-box;
 }
 /* header */
-.logo-title {
-  font-size: 20px;
-  color: #000;
-  font-weight: bold;
-}
-.main-header {
-  width: calc(100vw - 260px);
-  height: 100px;
-  line-height: 100px;
-  text-align: right;
-  padding: 0 50px 0 0;
+.topbar {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
   position: fixed;
   top: 0;
-  z-index: 999;
+  background: #f4f5f5;
+}
+.logo-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.header-nav a {
+  margin-right: 15px;
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+}
+.header-nav a:hover {
+  border-bottom: 3px solid #42b983;
 }
 
+/* 内容区 */
 .main {
+  margin: 80px 0 0 280px;
   display: flex;
-  height: 100%;
+}
+.content-wrapper {
+  flex: 1;
+  padding: 10px;
+}
+.content-article {
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-/* sidebar */
+/* 侧边菜单栏 */
 .sidebar {
-  width: 260px;
-  height: 100vh;
+  width: 280px;
+  height: calc(100% - 80px);
+  padding: 0 0px 60px 20px;
   position: fixed;
-  padding: 15px 20px;
+  top: 80px;
+  left: 0;
+  overflow-y: auto;
 }
-.content {
-  width: calc(100vw - 260px);
-  height: 100vh;
-  margin: 100px 0 0 260px;
+#navbar-sidebar .nav-link {
+  color: #4f5959;
+  border-radius: 0;
 }
-.content p {
-  height: 300px;
+#navbar-sidebar .nav-link:hover {
+  border: 0;
+  border-bottom: 2px solid #42b983;
+}
+#navbar-sidebar .nav-link.active {
+  border-bottom: 2px solid #42b983;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  background: transparent;
+  color: #4f5959;
 }

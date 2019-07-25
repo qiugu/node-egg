@@ -9,53 +9,52 @@
   <link rel="stylesheet" href="/public/assets/css/home.css">
 </head>
 <body data-spy="scroll" data-target="#navbar-sidebar" data-offset="100">
+  <header class="topbar">
+    <section class="brand">
+      <img src="/public/assets/images/logo.png" alt="logo">
+      <span class="logo-title">前端知识体系</span>
+    </section>
+    <nav class="header-nav">
+      <a href="https://github.com/qiugu/node-egg" target="_blank">GitHub仓库</a>
+      <a href="javascript:;">关于作者</a>
+    </nav>
+  </header>
   <main class="main">
-    <nav class="nav nav-tabs flex-column sidebar" id="navbar-sidebar">
-      <section class="navbar-brand">
-        <img src="/public/assets/images/logo.png" alt="logo">
-        <span class="logo-title">前端知识体系</span>
-      </section>
+    <nav class="nav nav-tabs sidebar" id="navbar-sidebar">
       <nav class="nav nav-pills flex-column">
-        <a class="nav-link" href="#item-1">Item 1</a>
+        <a class="nav-link" href="/home?title=前端知识体系">知识体系</a>
         <nav class="nav nav-pills flex-column">
-          <a class="nav-link ml-3 my-1" href="#item-1-1">Item 1-1</a>
-          <a class="nav-link ml-3 my-1" href="#item-1-2">Item 1-2</a>
+          <a class="nav-link ml-3 my-1" href="#浏览器">浏览器</a>
+          <a class="nav-link ml-3 my-1" href="#浏览器渲染进程">浏览器渲染进程</a>
+          <a class="nav-link ml-3 my-1" href="#从浏览器输入URL到界面展示内容">从浏览器输入URL</a>
+          <a class="nav-link ml-3 my-1" href="#HTTP协议">HTTP协议</a>
+          <a class="nav-link ml-3 my-1" href="#页面解析">页面解析</a>
+          <a class="nav-link ml-3 my-1" href="#CSS相关概念">CSS相关概念</a>
+          <a class="nav-link ml-3 my-1" href="#JS引擎解析">JS引擎解析</a>
+          <a class="nav-link ml-3 my-1" href="#JS引擎执行过程">JS引擎执行过程</a>
+          <a class="nav-link ml-3 my-1" href="#Web安全">Web安全</a>
+          <a class="nav-link ml-3 my-1" href="#Web优化">Web优化</a>
         </nav>
-        <a class="nav-link" href="#item-2">Item2</a>
-        <a class="nav-link" href="#item-3">Item3</a>
+        <a class="nav-link" href="/home?title=浏览器概览">浏览器概览</a>
         <nav class="nav nav-pills flex-column">
-          <a class="nav-link ml-3 my-1" href="#item-3-1">Item 3-1</a>
-          <a class="nav-link ml-3 my-1" href="#item-3-2">Item 3-2</a>
+          <a class="nav-link ml-3 my-1" href="#浏览器的组成">浏览器的组成</a>
+          <a class="nav-link ml-3 my-1" href="#浏览器中的进程与线程">浏览器的进程与线程</a>
+          <a class="nav-link ml-3 my-1" href="#浏览器的渲染过程">浏览器的渲染过程</a>
+          <a class="nav-link ml-3 my-1" href="#回流（reflow）和重绘（repaint)">回流和重绘</a>
+          <a class="nav-link ml-3 my-1" href="#性能影响">性能影响</a>
+          <a class="nav-link ml-3 my-1" href="#浏览器缓存">浏览器缓存</a>
+          <a class="nav-link ml-3 my-1" href="#浏览器兼容性问题">浏览器兼容性</a>
+          <a class="nav-link ml-3 my-1" href="#其他">其他</a>
         </nav>
       </nav>
     </nav>
-    <section class="content">
-      <section class="main-header">
-        <nav>
-          <a href="https://github.com/qiugu/node-egg" target="_blank">GitHub仓库</a>
-          <a href="javascript:;">关于作者</a>
-        </nav>
-      </section>
-      <section class="content-wrapper">
-          <h4 id="item-1">Item 1</h4>
-          <p>...</p>
-          <h5 id="item-1-1">Item 1-1</h5>
-          <p>...</p>
-          <h5 id="item-1-2">Item 2-2</h5>
-          <p>...</p>
-          <h4 id="item-2">Item 2</h4>
-          <p>...</p>
-          <h4 id="item-3">Item 3</h4>
-          <p>...</p>
-          <h5 id="item-3-1">Item 3-1</h5>
-          <p>...</p>
-          <h5 id="item-3-2">Item 3-2</h5>
-          <p>...</p>
-      </section>
+    <section class="content-wrapper">
+      <article class="content-article">
+          {{ html | safe }}
+      </article>
     </section>
   </main>
   <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js" integrity="sha256-LSUpTY0kkXGKvcBC9kbmgibmx3NVVgJvAEfTZbs51mU=" crossorigin="anonymous"></script>
 </body>
 </html>

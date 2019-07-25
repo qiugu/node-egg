@@ -25,6 +25,7 @@
     "md5": "^2.2.1",
     "mysql2": "^1.6.5",
     "passport-local": "^1.0.0",
+    "showdown": "^1.9.0",
     "svg-captcha": "^1.4.0",
     "uuid": "^3.3.2"
   },

@@ -9,14 +9,21 @@ module.exports = app => {
   /**
    * @param {string} { docContent, username }  markdown内容和提交用户名
    */
-  Article.save = async ({ docContent, username }) => {
+  Article.save = async ({ title, docContent, username }) => {
     return await Article.create({
       id: uuidv1(),
+      title,
       username,
       doc_content: docContent,
       createdTime: new Date(),
       lastModifiedTime: new Date(),
       version: 0,
+    })
+  }
+
+  Article.findByTitle = async title => {
+    return await Article.findOne({
+      where: { title },
     })
   }
 

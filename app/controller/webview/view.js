@@ -6,7 +6,23 @@ class UsersController extends Controller {
   //  博客商城首页
   async index() {
     const { ctx } = this
-    await ctx.render('index.html', { basePath: ctx.app.config.basePath })
+    const themeColor = [
+      'bridge-theme',
+      'dark-blue-theme',
+      'dark-red-theme',
+      'default-theme',
+      'green-theme',
+      'lite-blue-theme',
+      'orange-theme',
+      'pink-theme',
+      'purple-theme',
+      'red-theme'
+    ]
+    const locale = {
+      basePath: ctx.app.config.basePath,
+      themeColor: themeColor[Math.floor(Math.random() * 10)]
+    }
+    await ctx.render('index.html', locale)
   }
 
   async home() {

@@ -41,9 +41,9 @@ class UsersController extends Controller {
     covert.setOption('ghCompatibleHeaderId', true)
     covert.setOption('backslashEscapesHTMLTags', true)
     //  过滤script标签
-    const reg = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi
-    const htmlcontent = res.doc_content.replace(reg, '')
-    const html = covert.makeHtml(htmlcontent)
+    // const reg = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi
+    // const htmlcontent = res.doc_content.replace(reg, '')
+    const html = covert.makeHtml(res.doc_content)
     await ctx.render('home.html', { html })
   }
 

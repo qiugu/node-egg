@@ -72,7 +72,7 @@ module.exports = appInfo => {
   }
 
   config.cors = {
-    origin: 'http://localhost:3002',
+    origin: 'http://localhost:3022',
     credentials: true,
   }
 

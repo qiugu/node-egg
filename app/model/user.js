@@ -71,5 +71,11 @@ module.exports = app => {
     return user
   }
 
+  Admin.findByUsername = async username => {
+    return await Admin.findOne({
+      where: { username },
+    })
+  }
+
   return Admin
 }

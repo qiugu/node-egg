@@ -153,7 +153,10 @@ class HomeController extends Controller {
       this.exception('未查询到数据')
       return
     }
-    this.success(userinfo, 'ok')
+    const { uuid, roles, username, name } = userinfo
+    const result = { uuid, roles, username, name }
+    const token = await ctx.setToken(result)
+    this.success(Object.assign(result, { ACCESS_TOKEN: token }), '登录成功')
   }
 }
 

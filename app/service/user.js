@@ -68,23 +68,28 @@ class UserService extends Service {
     return captcha
   }
 
-  //  第三方github用户登录服务
+  /**
+   * github第三方用户登陆服务
+   * @param {object} params github第三方用户登陆相关配置信息 
+   */
   async getGithubInfo(params) {
     const { ctx } = this
+    //  获取access_token
     const res = await ctx.curl('https://github.com/login/oauth/access_token', {
       dataType: 'json',
       data: params,
     })
     this.logger.info(res.data.access_token)
+    //  利用access_token来获取用户信息
     const userinfo = await ctx.curl(`https://api.github.com/user?access_token=${res.data.access_token}`, {
-      dataType: 'json',
+      dataType: 'json'
     })
-    const newUserName = await ctx.model.User.find({
-      where: { username: userinfo.data.login },
-    })
+    //  根据获取的用户名加上'github'去请求数据库
+    const newUserName = await ctx.model.User.findByUsername(`${userinfo.data.login}-github`)
+    //  如果查询不到用户，则创建用户
     if (!newUserName) {
       const res = await ctx.model.User.addUser({
-        username: userinfo.data.login,
+        username: `${userinfo.data.login}-github`,
         password: userinfo.data.node_id,
         mobile: userinfo.data.id,
       })
@@ -95,8 +100,11 @@ class UserService extends Service {
         }
         return
       }
+      //  创建用户以后，利用用户去查询
+      const newUserCreate = await ctx.model.User.findByUsername(`${userinfo.data.login}-github`)
+      return newUserCreate
     }
-    return userinfo
+    return newUserName
   }
 }
 

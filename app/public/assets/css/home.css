@@ -18,14 +18,16 @@ body {
   position: fixed;
   top: 0;
   background: #f4f5f5;
+  border-bottom: 1px solid #c9c7c7;
 }
 .logo-title {
   font-size: 20px;
   font-weight: bold;
+  color: #42b983;
 }
 .header-nav a {
   margin-right: 15px;
-  color: #000;
+  color: #42b983;
   font-weight: 600;
   text-decoration: none;
 }

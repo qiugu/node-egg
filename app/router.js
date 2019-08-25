@@ -20,6 +20,10 @@ module.exports = app => {
   router.post(`${app.config.basePath}/user/githubAuth`, backend.manage.githubAuth)
   //  保存文章内容
   router.post(`${app.config.basePath}/articles/saveContent`, backend.document.saveDoc)
+  //  获取所有的文章
+  router.post(`${app.config.basePath}/articles/getList`, backend.document.getAllArticles)
+  //  根据id获取文章内容
+  router.post(`${app.config.basePath}/articles/getArticleById`, backend.document.getArticleById)
 
   /**
    * 前台页面接口

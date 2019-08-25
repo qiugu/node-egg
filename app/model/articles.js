@@ -27,5 +27,24 @@ module.exports = app => {
     })
   }
 
+  Article.getAll = async () => {
+    return await Article.findAll({
+      attributes: [
+        'id',
+        'username',
+        'title',
+        'createdTime',
+        'lastModifiedTime',
+        'version'
+      ]
+    })
+  }
+
+  Article.findById = async id => {
+    return await Article.findOne({
+      where: { id },
+    })
+  }
+
   return Article
 }

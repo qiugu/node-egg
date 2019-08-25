@@ -39,6 +39,54 @@ class Document extends Controller {
     }
     this.success({}, '保存成功')
   }
+
+  async getAllArticles() {
+    const { ctx } = this
+    const rule = {
+      token: {
+        type: 'string',
+      },
+    }
+    const err = this.validateParams(rule)
+    if (err && err.code) {
+      this.exception(null, err.message)
+      return
+    }
+    const res = await ctx.service.articles.getAllArticles()
+    if (!res) {
+      this.exception('获取失败')
+      return
+    }
+    res.map(item => {
+      item.createdTime = item.createdTime.getTime()
+      item.lastModifiedTime = item.createdTime.getTime()
+    })
+    this.success(res, 'ok')
+  }
+
+  async getArticleById() {
+    const { ctx } = this
+    const rule = {
+      token: {
+        type: 'string',
+      },
+      id: {
+        type: 'string'
+      }
+    }
+    const err = this.validateParams(rule)
+    if (err && err.code) {
+      this.exception(null, err.message)
+      return
+    }
+    const param = ctx.request.body
+    const res = await ctx.service.articles.getArticleById(param.id)
+    if (!res) {
+      this.exception('获取失败')
+      return
+    }
+    this.success(res, 'ok')
+  }
 }
 
 module.exports = Document

@@ -52,7 +52,7 @@ module.exports = appInfo => {
     host: 'localhost',
     port: 3306,
     username: 'qiugu',
-    password: 'jia123456',
+    password: 'byj123456',
     database: 'egg_qgms_prod',
   }
 
